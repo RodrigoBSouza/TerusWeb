@@ -1,0 +1,3286 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0; 
+    }
+
+    to { 
+        opacity: 1; 
+    }
+}
+
+:root {
+    --main-font-color: #F9F9F9;
+    --bg: #dce2ec;
+    --bg-header: #0c151a;
+    --bg-color: #1d2529;
+    --h1-color: #0848e8;
+    --bg-buttons: #0848e8;
+    --bg-hover-buttons: #002fa7;
+    --color-outline: #0848e8;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    height: 9vh;
+    padding: 10px;
+    background-color: var(--bg-header);
+    z-index: 1;
+}
+
+header button {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    width: 100px;
+    height: 35px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    color: var(--main-font-color);
+    background-color: transparent;
+    cursor: pointer;
+}
+
+header button:hover {
+    background-color: var(--bg-buttons);
+}
+
+.title-menu-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 12vh;
+}
+
+.title-menu-left h1 {
+    color: var(--main-font-color);
+    cursor: pointer;
+}
+
+.container-left {
+    position: absolute;
+    width: 19%;
+    height: 100vh;
+    background-color: var(--bg-color);
+    z-index: 2;
+}
+
+.menu-left ul {
+    margin-top: 10px;
+}
+
+.menu-left ul li {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    height: 45px;
+    margin-bottom: 10px;
+    color: var(--main-font-color);
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+.menu-left ul li:hover {
+    background-color: var(--bg-buttons);
+    color: var(--bg);
+}
+
+.menu-left ul li i {
+    margin-right: 10px;
+}
+
+#content-info {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 91vh;
+    background-color: var(--bg);
+}
+
+#modal-opacity {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #0c151a;
+    opacity: .6;
+    z-index: 990;
+}
+
+#modal-opacity-2, 
+#modal-opacity-consultar-terminal,
+#modal-opacity-reservar-terminal, 
+#modal-opacity-cancelar-reserva, 
+#modal-opacity-solicitar-liberacao,
+#modal-opacity-confirmar-liberacao,
+#modal-opacity-cancelar-liberacao,
+#modal-opacity-ocupar-confirmacao,
+#modal-opacity-cancelar-confirmacao {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #0c151a;
+    opacity: .6;
+    z-index: 995;
+    top: 0;
+    left: 0;
+}
+
+.hover-menu {
+    background-color: var(--bg-buttons);
+}
+
+/* ----- CONSULTAR TERMINAL ----- */
+
+#consultar-terminal {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    padding: 15px;
+    width: 27vw;
+    height: 54vh;
+    background-color: #fff;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.5); 
+    box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.5);   
+    z-index: 996;
+    animation: fadein .5s;
+}
+
+#resultado-consultar-terminal {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 600px;
+    height: 380px;
+    margin-top: -50px;
+    border-radius: 5px;
+    background-color: var(--bg-color);
+    -webkit-box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.5); 
+    box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.5);   
+    z-index: 996;
+}
+
+#modal-resultado-consultar-terminal {
+    padding: 10px;
+    width: 580px;
+    height: 360px;
+    background-color: var(--bg);
+    z-index: 996;
+}
+
+#loader-consultar-terminal {
+    display: none;
+    position: absolute;
+    z-index: 999;
+}
+
+#btn-resultado-consultar-terminal {
+    display: flex;
+    position: absolute;
+    z-index: 996;
+}
+
+#btn-resultado-consultar-terminal button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 140px;
+    height: 35px;
+    padding: 5px;
+    margin-top: 310px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 20px;
+    font-size: 17px;
+    background-color: var(--bg-buttons);
+    color: #fff;
+    cursor: pointer;
+    z-index: 996;
+}
+
+#btn-resultado-consultar-terminal button:hover {
+    background-color: #002fa7;
+    box-shadow: 0 0 10px 0 #002fa7; 
+}
+
+#consultar-terminal .title-consultar-terminal h1 {
+    text-align: center;
+    font-size: 27px;
+    color: var(--h1-color);
+    font-weight: 400;
+}
+
+#consultar-terminal .inputs-consultar-terminal {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+#consultar-terminal .inputs-consultar-terminal label {
+    color: #1d2529;
+    font-weight: 500;
+}
+
+#consultar-terminal .inputs-consultar-terminal input {
+    display: flex;
+    width: 23vw;
+    height: 40px;
+    font-size: 18px;
+    padding: 0 5px;
+    margin-bottom: 10px;
+    border: 1px solid #8e8f8f;
+    border-radius: 5px;
+    outline-color: var(--color-outline);
+}
+
+#consultar-terminal .buttons-consultar-terminal {
+    display: flex;
+    width: 25vw;
+    justify-content: space-around;
+}
+
+#consultar-terminal .buttons-consultar-terminal button {
+    display: flex;
+    justify-content: center;
+    width: 90px;
+    height: 35px;
+    padding: 5px;
+    border: none;
+    border-radius: 20px;
+    font-size: 17px;
+    color: #fff;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 40px 40px #0848e8 inset, 0 0 0 0 #0848e8;
+    cursor: pointer;
+}
+
+#consultar-terminal .buttons-consultar-terminal button:hover {
+    background-color: #002fa7;
+    box-shadow: 0 0 10px 0 #002fa7;
+}
+
+/* ----- RESERVAR TERMINAL ----- */
+
+#reservar-terminal {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    padding: 20px;
+    width: 27vw;
+    height: auto;
+    background-color: #fff;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.5); 
+    box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.5);   
+    z-index: 996;
+    animation: fadein .5s;
+}
+
+#reservar-terminal .title-reservar-terminal h1 {
+    text-align: center;
+    font-size: 27px;
+    color: var(--h1-color);
+    font-weight: 400;
+}
+
+#content-aviso-reservar-terminal p {
+    padding: 5px;
+    text-align: center;
+    color: #ff0000;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    background-color: #dce2ec;
+}
+
+.inputs-align-reservar-terminal-1, 
+.inputs-align-reservar-terminal-2,
+.inputs-align-reservar-terminal-3 {
+    display: flex;
+    justify-content: space-between;
+    width: 23vw;
+}
+
+#cnl-reservar-terminal, #at-reservar-terminal {
+    width: 130px;
+}
+
+#nrc-reservar-terminal, #terminal-reservar-terminal {
+    width: 295px;
+}
+
+#reservar-terminal .inputs-reservar-terminal label {
+    color: #1d2529;
+    font-weight: 500;
+}
+
+#reservar-terminal .inputs-reservar-terminal input {
+    display: flex;
+    height: 40px;
+    font-size: 18px;
+    padding: 0 5px;
+    margin-bottom: 10px;
+    border: 1px solid #8e8f8f;
+    border-radius: 5px;
+    outline-color: var(--color-outline);
+}
+
+#reservar-terminal .buttons-reservar-terminal {
+    display: flex;
+    width: 25vw;
+    justify-content: space-around;
+}
+
+#reservar-terminal .buttons-reservar-terminal button {
+    width: 100px;
+    height: 35px;
+    padding: 5px;
+    border: none;
+    border-radius: 20px;
+    font-size: 17px;
+    color: #fff;
+    margin-top: 30px;
+    background-color: var(--bg-buttons);
+    cursor: pointer;
+}
+
+#reservar-terminal .buttons-reservar-terminal button:hover {
+    background-color: #002fa7;
+    box-shadow: 0 0 10px 0 #002fa7;
+}
+
+#resultado-reservar-terminal {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+    width: 300px;
+    height: 40px;
+    text-align: center;
+    font-size: 15px;
+}
+
+#modal-resultado-reservar-terminal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 35px;
+    background-color: var(--bg);
+    z-index: 996;
+}
+
+#loader-reservar-terminal {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    width: 40px;
+    height: 40px;
+}
+
+/* ----- CONFIRMAR RESERVA ----- */
+
+#confirmar-reserva {
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+    padding: 20px;
+    width: 39vw;
+    height: auto;
+    background-color: #fff;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.5); 
+    box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.5);   
+    z-index: 993;
+    animation: fadein .5s;
+}
+
+#confirmar-reserva .title-confirmar-reserva h1 {
+    text-align: center;
+    font-size: 27px;
+    color: var(--h1-color);
+    font-weight: 400;
+}
+
+#content-aviso-confirmar-reserva-insmud, 
+#content-aviso-confirmar-reserva-insrec {
+    display: none;
+    justify-content: center;
+    padding: 5px;
+    text-align: center;
+    color: #ff0000;
+    margin-bottom: 10px;
+    background-color: #dce2ec;
+    font-size: 14px;
+}
+
+.confirmar-reserva-select-modal, #natureza-os-confirmar-reserva {
+    color: var(--h1-color);
+    font-weight: 400;
+    font-size: 20px;
+}
+
+#confirmar-reserva .confirmar-reserva-select-modal {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#natureza-os-confirmar-reserva {
+    border: 1px solid var(--color-outline);
+    outline-color: var(--color-outline);
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
+#confirmar-reserva .inputs-confirmar-reserva input {
+    display: flex;
+    height: 40px;
+    font-size: 18px;
+    padding: 0 5px;
+    margin-bottom: 10px;
+    border: 1px solid #8e8f8f;
+    border-radius: 5px;
+    outline-color: var(--color-outline);
+}
+
+.inputs-confirmar-reserva label {
+    display: flex;
+    flex-direction: column;
+}
+
+#resultado-confirmar-reserva-inshab, #modal-resultado-confirmar-reserva-inshab,
+#resultado-confirmar-reserva-insrec, #modal-resultado-confirmar-reserva-insrec,
+#resultado-confirmar-reserva-insmud, #modal-resultado-confirmar-reserva-insmud,
+#btn-resultado-confirmar-reserva, #btn-resultado-confirmar-reserva button {
+    z-index: 995;
+}
+
+#loader-confirmar-reserva-inshab, #loader-confirmar-reserva-insrec, #loader-confirmar-reserva-insmud {
+    z-index: 999;
+}
+
+/* ----- CONFIRMAR RESERVA MODAL INSHAB ----- */
+
+#modal-inshab-confirmar-reserva {
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    width: 35vw;
+    height: auto;
+    animation: fadein .5s;
+}
+
+.inputs-align-inshab-confirmar-reserva-1, 
+.inputs-align-inshab-confirmar-reserva-2,
+.inputs-align-inshab-confirmar-reserva-3 {
+    display: flex;
+    justify-content: space-between;
+}
+
+#cnl-inshab-confirmar-reserva,
+#ident-os-inshab-confirmar-reserva {
+    width: 200px;
+}
+
+#id-estacao-inshab-confirmar-reserva,
+#terminal-inshab-confirmar-reserva {
+    width: 150px;
+}
+
+#id-fibra-inshab-confirmar-reserva {
+    width: 230px;
+}
+
+#nrc-inshab-confirmar-reserva {
+    width: 180px;
+}
+
+#flag-port-inshab-confirmar-reserva {
+    width: 50px;
+    height: 40px;
+    outline-color: var(--color-outline);
+    border-radius: 5px;
+    margin-left: 5px;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+#confirmar-reserva .buttons-inshab-confirmar-reserva {
+    display: flex;
+    justify-content: space-around;
+}
+
+#confirmar-reserva .buttons-inshab-confirmar-reserva button {
+    width: 120px;
+    height: 35px;
+    padding: 5px;
+    border: none;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 17px;
+    margin-top: 30px;
+    background-color: var(--bg-buttons);
+    cursor: pointer;
+}
+
+#confirmar-reserva .buttons-inshab-confirmar-reserva button:hover {
+    background-color: #002fa7;
+    box-shadow: 0 0 10px 0 #002fa7;
+}
+
+#resultado-confirmar-reserva-inshab {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 10px;
+    width: 450px;
+    height: 35px;
+    text-align: center;
+    font-size: 15px;
+}
+
+#modal-resultado-confirmar-reserva-inshab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 450px;
+    height: 35px;
+    background-color: var(--bg);
+    z-index: 996;
+}
+
+#loader-confirmar-reserva-inshab {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    width: 40px;
+    height: 40px;
+}
+
+/* ----- CONFIRMAR RESERVA MODAL INSREC ----- */
+
+#modal-insrec-confirmar-reserva {
+    display: none;
+    font-size: 18px;
+    flex-direction: column;
+    margin: auto;
+    width: 35vw;
+    animation: fadein .5s;
+}
+
+#btn-resultado-confirmar-reserva {
+    display: flex;
+    position: absolute;
+}
+
+.inputs-align-insrec-confirmar-reserva-1, 
+.inputs-align-insrec-confirmar-reserva-2,
+.inputs-align-insrec-confirmar-reserva-3 {
+    display: flex;
+    justify-content: space-between;
+}
+
+#cnl-insrec-confirmar-reserva,
+#ident-os-insrec-confirmar-reserva,
+#nds-local-insrec-confirmar-reserva {
+    width: 200px;
+}
+ 
+#id-estacao-insrec-confirmar-reserva,
+#terminal-insrec-confirmar-reserva {
+    width: 150px;
+}
+
+#nrc-insrec-confirmar-reserva {
+    width: 180px;
+}
+
+#flag-port-insrec-confirmar-reserva {
+    width: 50px;
+    height: 40px;
+    outline-color: var(--color-outline);
+    border-radius: 5px;
+    margin-left: 5px;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+#confirmar-reserva .buttons-insrec-confirmar-reserva {
+    display: flex;
+    justify-content: space-around;
+}
+
+#confirmar-reserva .buttons-insrec-confirmar-reserva button {
+    width: 120px;
+    height: 35px;
+    padding: 5px;
+    border: none;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 17px;
+    margin-top: 30px;
+    background-color: var(--bg-buttons);
+    cursor: pointer;
+}
+
+#confirmar-reserva .buttons-insrec-confirmar-reserva button:hover {
+    background-color: #002fa7;
+    box-shadow: 0 0 10px 0 #002fa7;
+}
+
+#resultado-confirmar-reserva-insrec {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 10px;
+    width: 450px;
+    height: 35px;
+    text-align: center;
+    font-size: 15px;
+}
+
+#modal-resultado-confirmar-reserva-insrec {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 450px;
+    height: 35px;
+    background-color: var(--bg);
+    z-index: 996;
+}
+
+#loader-confirmar-reserva-insrec {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    width: 40px;
+    height: 40px;
+}
+
+/* ----- CONFIRMAR TERMINAL MODAL INSMUD ----- */
+
+#modal-insmud-confirmar-reserva {
+    display: none;
+    font-size: 18px;
+    flex-direction: column;
+    margin: auto;
+    width: 35vw;
+    animation: fadein .5s;
+}
+
+.inputs-align-insmud-confirmar-reserva-1, 
+.inputs-align-insmud-confirmar-reserva-2,
+.inputs-align-insmud-confirmar-reserva-3 {
+    display: flex;
+    justify-content: space-between;
+}
+
+#cnl-insmud-confirmar-reserva, 
+#ident-os-insmud-confirmar-reserva {
+    width: 200px;
+}
+
+#id-estacao-insmud-confirmar-reserva,
+#terminal-insmud-confirmar-reserva {
+    width: 150px;
+}
+
+#nrc-insmud-confirmar-reserva {
+    width: 180px;
+}
+
+#flag-port-insmud-confirmar-reserva {
+    width: 50px;
+    height: 40px;
+    outline-color: var(--color-outline);
+    border-radius: 5px;
+    margin-left: 5px;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+#confirmar-reserva .buttons-insmud-confirmar-reserva {
+    display: flex;
+    justify-content: space-around;
+}
+
+#confirmar-reserva .buttons-insmud-confirmar-reserva button {
+    width: 120px;
+    height: 35px;
+    padding: 5px;
+    border: none;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 17px;
+    margin-top: 30px;
+    background-color: var(--bg-buttons);
+    cursor: pointer;
+}
+
+#confirmar-reserva .buttons-insmud-confirmar-reserva button:hover {
+    background-color: #002fa7;
+    box-shadow: 0 0 10px 0 #002fa7;
+}
+
+#resultado-confirmar-reserva-insmud {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 10px;
+    width: 450px;
+    height: 35px;
+    text-align: center;
+    font-size: 15px;
+}
+
+#modal-resultado-confirmar-reserva-insmud {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 450px;
+    height: 35px;
+    background-color: var(--bg);
+    z-index: 996;
+}
+
+#loader-confirmar-reserva-insmud {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    width: 40px;
+    height: 40px;
+}
+
+/* ----- CONFIRMAR TERMINAL MODAL ALTPRO ----- */
+
+#modal-altpro-confirmar-reserva {
+    display: none;
+    font-size: 18px;
+    flex-direction: column;
+    margin: auto;
+    width: 35vw;
+    animation: fadein .5s;
+}
+
+.inputs-align-altpro-confirmar-reserva-1, 
+.inputs-align-altpro-confirmar-reserva-2,
+.inputs-align-altpro-confirmar-reserva-3 {
+    display: flex;
+    justify-content: space-between;
+}
+
+#cnl-altpro-confirmar-reserva, 
+#ident-os-altpro-confirmar-reserva {
+    width: 200px;
+}
+
+#id-estacao-altpro-confirmar-reserva,
+#terminal-altpro-confirmar-reserva {
+    width: 150px;
+}
+
+#nrc-altpro-confirmar-reserva {
+    width: 180px;
+}
+
+#flag-port-altpro-confirmar-reserva {
+    width: 50px;
+    height: 40px;
+    outline-color: var(--color-outline);
+    border-radius: 5px;
+    margin-left: 5px;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+#confirmar-reserva .buttons-altpro-confirmar-reserva {
+    display: flex;
+    justify-content: space-around;
+}
+
+#confirmar-reserva .buttons-altpro-confirmar-reserva button {
+    width: 120px;
+    height: 35px;
+    padding: 5px;
+    border: none;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 17px;
+    margin-top: 30px;
+    background-color: var(--bg-buttons);
+    cursor: pointer;
+}
+
+#confirmar-reserva .buttons-altpro-confirmar-reserva button:hover {
+    background-color: #002fa7;
+    box-shadow: 0 0 10px 0 #002fa7;
+}
+
+#resultado-confirmar-reserva-altpro {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 10px;
+    width: 450px;
+    height: 35px;
+    text-align: center;
+    font-size: 15px;
+}
+
+#modal-resultado-confirmar-reserva-altpro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 450px;
+    height: 35px;
+    background-color: var(--bg);
+    z-index: 996;
+}
+
+#loader-confirmar-reserva-altpro {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    width: 40px;
+    height: 40px;
+}
+
+/* ----- OCUPAR CONFIRMAÇÃO ----- */
+
+#ocupar-confirmacao {
+    display: none;
+    flex-direction: column;
+    margin: auto;
+    padding: 20px;
+    width: 35vw;
+    height: auto;
+    background-color: #fff;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.5); 
+    box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.5);   
+    z-index: 995;
+    animation: fadein .5s;
+}
+
+#ocupar-confirmacao .title-ocupar-confirmacao h1 {
+    text-align: center;
+    font-size: 27px;
+    color: var(--h1-color);
+    font-weight: 400;
+}
+
+.ocupar-confirmacao-select-modal, #natureza-os-ocupar-confirmacao {
+    color: var(--h1-color);
+    font-weight: 400;
+    font-size: 20px;
+}
+
+#ocupar-confirmacao .ocupar-confirmacao-select-modal {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#natureza-os-ocupar-confirmacao {
+    border: 1px solid var(--color-outline);
+    outline-color: var(--color-outline);
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
+#ocupar-confirmacao .inputs-ocupar-confirmacao input {
+    display: flex;
+    height: 40px;
+    font-size: 18px;
+    padding: 0 5px;
+    margin-bottom: 10px;
+    border: 1px solid #8e8f8f;
+    border-radius: 5px;
+    outline-color: var(--color-outline);
+}
+
+.inputs-ocupar-confirmacao label {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ----- OCUPAR CONFIRMAÇÃO MODAL INSHAB ----- */
+
+#modal-inshab-ocupar-confirmacao {
+    display: flex;
+    font-size: 18px;
+    flex-direction: column;
+    margin: auto;
+    width: 30vw;
+    animation: fadein .5s;
+}
+
+.inputs-align-inshab-ocupar-confirmacao-1, 
+.inputs-align-inshab-ocupar-confirmacao-2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+#ident-os-inshab-ocupar-confirmacao,
+#nds-local-inshab-ocupar-confirmacao,
+#terminal-inshab-ocupar-confirmacao {
+    width: 200px;
+}
+
+#cnl-inshab-ocupar-confirmacao {
+    width: 150px;
+}
+
+#acmd-inshab-ocupar-confirmacao {
+    width: 60px;
+}
+
+#flag-port-inshab-ocupar-confirmacao {
+    width: 50px;
+    height: 40px;
+    outline-color: var(--color-outline);
+    border-radius: 5px;
+    margin-left: 5px;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+#ocupar-confirmacao .buttons-inshab-ocupar-confirmacao {
+    display: flex;
+    justify-content: space-around;
+}
+
+#ocupar-confirmacao .buttons-inshab-ocupar-confirmacao button {
+    width: 120px;
+    height: 35px;
+    padding: 5px;
+    border: none;
+    border-radius: 20px;
+    font-size: 17px;
+    color: #fff;
+    margin-top: 30px;
+    background-color: var(--bg-buttons);
+    cursor: pointer;
+}
+
+#ocupar-confirmacao .buttons-inshab-ocupar-confirmacao button:hover {
+    background-color: #002fa7;
+    box-shadow: 0 0 10px 0 #002fa7;
+}
+
+#resultado-ocupar-confirmacao-inshab {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 10px;
+    width: 380px;
+    height: 35px;
+    text-align: center;
+    font-size: 15px;
+}
+
+#modal-resultado-ocupar-confirmacao-inshab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 380px;
+    height: 35px;
+    background-color: var(--bg);
+    z-index: 996;
+}
+
+#loader-ocupar-confirmacao-inshab {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    width: 40px;
+    height: 40px;
+}
+
+/* ----- OCUPAR CONFIRMAÇÃO MODAL INSREC ----- */
+
+#modal-insrec-ocupar-confirmacao {
+    display: none;
+    font-size: 18px;
+    flex-direction: column;
+    margin: auto;
+    width: 30vw;
+    animation: fadein .5s;
+}
+
+.inputs-align-insrec-ocupar-confirmacao-1, 
+.inputs-align-insrec-ocupar-confirmacao-2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+#ident-os-insrec-ocupar-confirmacao,
+#terminal-insrec-ocupar-confirmacao {
+    width: 200px;
+}
+
+#cnl-insrec-ocupar-confirmacao {
+    width: 150px;
+}
+
+#acmd-insrec-ocupar-confirmacao {
+    width: 60px;
+}
+
+#flag-port-insrec-ocupar-confirmacao {
+    width: 50px;
+    height: 40px;
+    outline-color: var(--color-outline);
+    border-radius: 5px;
+    margin-left: 5px;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+#ocupar-confirmacao .buttons-insrec-ocupar-confirmacao {
+    display: flex;
+    justify-content: space-around;
+}
+
+#ocupar-confirmacao .buttons-insrec-ocupar-confirmacao button {
+    width: 120px;
+    height: 35px;
+    padding: 5px;
+    border: none;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 17px;
+    margin-top: 30px;
+    background-color: var(--bg-buttons);
+    cursor: pointer;
+}
+
+#ocupar-confirmacao .buttons-insrec-ocupar-confirmacao button:hover {
+    background-color: #002fa7;
+    box-shadow: 0 0 10px 0 #002fa7;
+}
+
+#resultado-ocupar-confirmacao-insrec {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 10px;
+    width: 380px;
+    height: 35px;
+    text-align: center;
+    font-size: 15px;
+}
+
+#modal-resultado-ocupar-confirmacao-insrec {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 380px;
+    height: 35px;
+    background-color: var(--bg);
+    z-index: 996;
+}
+
+#loader-ocupar-confirmacao-insrec {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    width: 40px;
+    height: 40px;
+}
+
+/* ----- OCUPAR CONFIRMAÇÃO MODAL INSMUD ----- */
+
+#modal-insmud-ocupar-confirmacao {
+    display: none;
+    flex-direction: column;
+    font-size: 18px;
+    margin: auto;
+    width: 30vw;
+    animation: fadein .5s;
+}
+
+.inputs-align-insmud-ocupar-confirmacao-1, 
+.inputs-align-insmud-ocupar-confirmacao-2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+#ident-os-insmud-ocupar-confirmacao,
+#nds-local-insmud-ocupar-confirmacao,
+#terminal-insmud-ocupar-confirmacao {
+    width: 200px;
+}
+
+#cnl-insmud-ocupar-confirmacao, 
+#id-estacao-insmud-ocupar-confirmacao {
+    width: 150px;
+}
+
+#acmd-insmud-ocupar-confirmacao {
+    width: 60px;
+}
+
+#flag-port-insmud-ocupar-confirmacao {
+    width: 50px;
+    height: 40px;
+    outline-color: var(--color-outline);
+    border-radius: 5px;
+    margin-left: 5px;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+#ocupar-confirmacao .buttons-insmud-ocupar-confirmacao {
+    display: flex;
+    justify-content: space-around;
+}
+
+#ocupar-confirmacao .buttons-insmud-ocupar-confirmacao button {
+    width: 120px;
+    height: 35px;
+    padding: 5px;
+    border: none;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 17px;
+    margin-top: 30px;
+    background-color: var(--bg-buttons);
+    cursor: pointer;
+}
+
+#ocupar-confirmacao .buttons-insmud-ocupar-confirmacao button:hover {
+    background-color: #002fa7;
+    box-shadow: 0 0 10px 0 #002fa7;
+}
+
+#resultado-ocupar-confirmacao-insmud {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 10px;
+    width: 380px;
+    height: 35px;
+    text-align: center;
+    font-size: 15px;
+}
+
+#modal-resultado-ocupar-confirmacao-insmud {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 380px;
+    height: 35px;
+    background-color: var(--bg);
+    z-index: 996;
+}
+
+#loader-ocupar-confirmacao-insmud {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    width: 40px;
+    height: 40px;
+}
+
+/* ----- OCUPAR CONFIRMAÇÃO MODAL ALTPRO ----- */
+
+#modal-altpro-ocupar-confirmacao {
+    display: none;
+    flex-direction: column;
+    font-size: 18px;
+    margin: auto;
+    width: 30vw;
+    animation: fadein .5s;
+}
+
+.inputs-align-altpro-ocupar-confirmacao-1, 
+.inputs-align-altpro-ocupar-confirmacao-2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+#ident-os-altpro-ocupar-confirmacao,
+#nds-local-altpro-ocupar-confirmacao,
+#terminal-altpro-ocupar-confirmacao {
+    width: 200px;
+}
+
+#cnl-altpro-ocupar-confirmacao, 
+#id-estacao-altpro-ocupar-confirmacao {
+    width: 150px;
+}
+
+#acmd-altpro-ocupar-confirmacao {
+    width: 60px;
+}
+
+#flag-port-altpro-ocupar-confirmacao {
+    width: 50px;
+    height: 40px;
+    outline-color: var(--color-outline);
+    border-radius: 5px;
+    margin-left: 5px;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+#ocupar-confirmacao .buttons-altpro-ocupar-confirmacao {
+    display: flex;
+    justify-content: space-around;
+}
+
+#ocupar-confirmacao .buttons-altpro-ocupar-confirmacao button {
+    width: 120px;
+    height: 35px;
+    padding: 5px;
+    border: none;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 17px;
+    margin-top: 30px;
+    background-color: var(--bg-buttons);
+    cursor: pointer;
+}
+
+#ocupar-confirmacao .buttons-altpro-ocupar-confirmacao button:hover {
+    background-color: #002fa7;
+    box-shadow: 0 0 10px 0 #002fa7;
+}
+
+#resultado-ocupar-confirmacao-altpro {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 10px;
+    width: 380px;
+    height: 35px;
+    text-align: center;
+    font-size: 15px;
+}
+
+#modal-resultado-ocupar-confirmacao-altpro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 380px;
+    height: 35px;
+    background-color: var(--bg);
+    z-index: 996;
+}
+
+#loader-ocupar-confirmacao-altpro {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    width: 40px;
+    height: 40px;
+}
+
+/* ----- CANCELAR CONFIRMAÇÃO ----- */
+
+#cancelar-confirmacao {
+    display: none;
+    flex-direction: column;
+    margin: auto;
+    padding: 20px;
+    width: 33vw;
+    height: auto;
+    background-color: #fff;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.5); 
+    box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.5);   
+    z-index: 995;
+    animation: fadein .5s;
+}
+
+#cancelar-confirmacao .title-cancelar-confirmacao h1 {
+    text-align: center;
+    font-size: 27px;
+    color: var(--h1-color);
+    font-weight: 400;
+}
+
+.cancelar-confirmacao-select-modal, #natureza-os-cancelar-confirmacao {
+    color: var(--h1-color);
+    font-weight: 400;
+    font-size: 20px;
+}
+
+#cancelar-confirmacao .cancelar-confirmacao-select-modal {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#natureza-os-cancelar-confirmacao {
+    border: 1px solid var(--color-outline);
+    outline-color: var(--color-outline);
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
+#natureza-os-cancelar-confirmacao select {
+    font-size: 20px;
+}
+
+#cancelar-confirmacao .inputs-cancelar-confirmacao input {
+    display: flex;
+    width: 25vw;
+    height: 40px;
+    font-size: 18px;
+    padding: 0 5px;
+    margin-bottom: 10px;
+    border: 1px solid #8e8f8f;
+    border-radius: 5px;
+    outline-color: var(--color-outline);
+}
+
+.inputs-cancelar-confirmacao label {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ----- CANCELAR CONFIRMAÇÃO MODAL INSHAB ----- */
+
+#modal-inshab-cancelar-confirmacao {
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    margin: auto;
+    width: 30vw;
+    animation: fadein .5s;
+}
+
+.inputs-align-inshab-cancelar-confirmacao-1, 
+.inputs-align-inshab-cancelar-confirmacao-2,
+.inputs-align-inshab-cancelar-confirmacao-3 {
+    display: flex;
+    justify-content: center;
+}
+
+#ident-os-inshab-cancelar-confirmacao,
+#cnl-inshab-cancelar-confirmacao,
+#terminal-inshab-cancelar-confirmacao {
+    width: 280px;
+}
+
+#cancelar-confirmacao .buttons-inshab-cancelar-confirmacao {
+    display: flex;
+    justify-content: space-around;
+}
+
+#cancelar-confirmacao .buttons-inshab-cancelar-confirmacao button {
+    width: 110px;
+    height: 35px;
+    padding: 5px;
+    border: none;
+    border-radius: 20px;
+    font-size: 17px;
+    color: #fff;
+    margin-top: 30px;
+    background-color: var(--bg-buttons);
+    cursor: pointer;
+}
+
+#cancelar-confirmacao .buttons-inshab-cancelar-confirmacao button:hover {
+    background-color: #002fa7;
+    box-shadow: 0 0 10px 0 #002fa7;
+}
+
+#resultado-cancelar-confirmacao-inshab {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 10px;
+    width: 320px;
+    height: 35px;
+    text-align: center;
+    font-size: 15px;
+}
+
+#modal-resultado-cancelar-confirmacao-inshab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 320px;
+    height: 35px;
+    background-color: var(--bg);
+    z-index: 996;
+}
+
+#loader-cancelar-confirmacao-inshab {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    width: 40px;
+    height: 40px;
+}
+
+/* ----- CANCELAR CONFIRMAÇÃO MODAL INSREC ----- */
+
+#modal-insrec-cancelar-confirmacao {
+    display: none;
+    flex-direction: column;
+    font-size: 18px;
+    margin: auto;
+    width: 30vw;
+    animation: fadein .5s;
+}
+
+.inputs-align-insrec-cancelar-confirmacao-1, 
+.inputs-align-insrec-cancelar-confirmacao-2,
+.inputs-align-insrec-cancelar-confirmacao-3 {
+    display: flex;
+    justify-content: center;
+}
+
+#ident-os-insrec-cancelar-confirmacao,
+#cnl-insrec-cancelar-confirmacao,
+#terminal-insrec-cancelar-confirmacao {
+    width: 280px;
+}
+
+#cancelar-confirmacao .buttons-insrec-cancelar-confirmacao {
+    display: flex;
+    justify-content: space-around;
+}
+
+#cancelar-confirmacao .buttons-insrec-cancelar-confirmacao button {
+    width: 110px;
+    height: 35px;
+    padding: 5px;
+    border: none;
+    border-radius: 20px;
+    font-size: 17px;
+    color: #fff;
+    margin-top: 30px;
+    background-color: var(--bg-buttons);
+    cursor: pointer;
+}
+
+#cancelar-confirmacao .buttons-insrec-cancelar-confirmacao button:hover {
+    background-color: #002fa7;
+    box-shadow: 0 0 10px 0 #002fa7;
+}
+
+#resultado-cancelar-confirmacao-insrec {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 10px;
+    width: 320px;
+    height: 35px;
+    text-align: center;
+    font-size: 15px;
+}
+
+#modal-resultado-cancelar-confirmacao-insrec {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 320px;
+    height: 35px;
+    background-color: var(--bg);
+    z-index: 996;
+}
+
+#loader-cancelar-confirmacao-insrec {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    width: 40px;
+    height: 40px;
+}
+
+/* ----- CANCELAR CONFIRMAÇÃO MODAL INSMUD ----- */
+
+#modal-insmud-cancelar-confirmacao {
+    display: none;
+    flex-direction: column;
+    font-size: 18px;
+    margin: auto;
+    width: 30vw;
+    animation: fadein .5s;
+}
+
+.inputs-align-insmud-cancelar-confirmacao-1, 
+.inputs-align-insmud-cancelar-confirmacao-2 {
+    display: flex;
+    justify-content: center;
+}
+
+#ident-os-insmud-cancelar-confirmacao,
+#cnl-insmud-cancelar-confirmacao,
+#terminal-insmud-cancelar-confirmacao {
+    width: 280px;
+}
+
+#cancelar-confirmacao .buttons-insmud-cancelar-confirmacao {
+    display: flex;
+    justify-content: space-around;
+}
+
+#cancelar-confirmacao .buttons-insmud-cancelar-confirmacao button {
+    width: 110px;
+    height: 35px;
+    padding: 5px;
+    border: none;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 17px;
+    margin-top: 30px;
+    background-color: var(--bg-buttons);
+    cursor: pointer;
+}
+
+#cancelar-confirmacao .buttons-insmud-cancelar-confirmacao button:hover {
+    background-color: #002fa7;
+    box-shadow: 0 0 10px 0 #002fa7;
+}
+
+#resultado-cancelar-confirmacao-insmud {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 10px;
+    width: 320px;
+    height: 35px;
+    text-align: center;
+    font-size: 15px;
+}
+
+#modal-resultado-cancelar-confirmacao-insmud {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 320px;
+    height: 35px;
+    background-color: var(--bg);
+    z-index: 996;
+}
+
+#loader-cancelar-confirmacao-insmud {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    width: 40px;
+    height: 40px;
+}
+
+/* ----- CANCELAR CONFIRMAÇÃO MODAL SUBNUM ----- */
+
+#modal-subnum-cancelar-confirmacao {
+    display: none;
+    flex-direction: column;
+    font-size: 18px;
+    margin: auto;
+    width: 30vw;
+    animation: fadein .5s;
+}
+
+.inputs-align-subnum-cancelar-confirmacao-1, 
+.inputs-align-subnum-cancelar-confirmacao-2,
+.inputs-align-subnum-cancelar-confirmacao-3 {
+    display: flex;
+    justify-content: center;
+}
+
+#ident-os-subnum-cancelar-confirmacao,
+#cnl-subnum-cancelar-confirmacao,
+#terminal-subnum-cancelar-confirmacao {
+    width: 280px;
+}
+
+#cancelar-confirmacao .buttons-subnum-cancelar-confirmacao {
+    display: flex;
+    justify-content: space-around;
+}
+
+#cancelar-confirmacao .buttons-subnum-cancelar-confirmacao button {
+    width: 110px;
+    height: 35px;
+    padding: 5px;
+    border: none;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 17px;
+    margin-top: 30px;
+    background-color: var(--bg-buttons);
+    cursor: pointer;
+}
+
+#cancelar-confirmacao .buttons-subnum-cancelar-confirmacao button:hover {
+    background-color: #002fa7;
+    box-shadow: 0 0 10px 0 #002fa7;
+}
+
+#resultado-cancelar-confirmacao-subnum {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 10px;
+    width: 320px;
+    height: 35px;
+    text-align: center;
+    font-size: 15px;
+}
+
+#modal-resultado-cancelar-confirmacao-subnum {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 320px;
+    height: 35px;
+    background-color: var(--bg);
+    z-index: 996;
+}
+
+#loader-cancelar-confirmacao-subnum {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    width: 40px;
+    height: 40px;
+}
+
+/* ----- CANCELAR RESERVA ----- */
+
+#cancelar-reserva {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    padding: 20px;
+    width: 27vw;
+    height: auto;
+    background-color: #fff;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.5); 
+    box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.5);   
+    z-index: 995;
+    animation: fadein .5s;
+}
+
+#cancelar-reserva .title-cancelar-reserva h1 {
+    text-align: center;
+    font-size: 27px;
+    color: var(--h1-color);
+    font-weight: 400;
+}
+
+#cancelar-reserva .inputs-cancelar-reserva {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.inputs-align-cancelar-reserva-1, 
+.inputs-align-cancelar-reserva-2 {
+    display: flex;
+    justify-content: space-between;
+    width: 23vw;
+}
+
+#cancelar-reserva .inputs-cancelar-reserva label {
+    color: #1d2529;
+    font-weight: 500;
+}
+
+#cancelar-reserva .inputs-cancelar-reserva input {
+    display: flex;
+    height: 40px;
+    font-size: 18px;
+    padding: 0 5px;
+    margin-bottom: 10px;
+    border: 1px solid #8e8f8f;
+    border-radius: 5px;
+    outline-color: var(--color-outline);
+}
+
+#nrc-cancelar-reserva, #terminal-cancelar-reserva {
+    width: 23vw;
+}
+
+#cancelar-reserva .buttons-cancelar-reserva {
+    display: flex;
+    width: 25vw;
+    justify-content: space-around;
+}
+
+#cancelar-reserva .buttons-cancelar-reserva button {
+    width: 90px;
+    height: 35px;
+    padding: 5px;
+    border: none;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 17px;
+    margin-top: 30px;
+    background-color: var(--bg-buttons);
+    cursor: pointer;
+}
+
+#cancelar-reserva .buttons-cancelar-reserva button:hover {
+    background-color: #002fa7;
+    box-shadow: 0 0 10px 0 #002fa7;
+}
+
+#resultado-cancelar-reserva {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 10px;
+    width: 300px;
+    height: 35px;
+    text-align: center;
+    font-size: 15px;
+}
+
+#modal-resultado-cancelar-reserva {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 35px;
+    background-color: var(--bg);
+    z-index: 996;
+}
+
+#loader-cancelar-reserva {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    width: 40px;
+    height: 40px;
+}
+
+/* ----- SOLICITAR LIBERAÇÃO ----- */
+
+#solicitar-liberacao {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    padding: 20px;
+    width: 32vw;
+    height: auto;
+    background-color: #fff;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.5); 
+    box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.5);   
+    z-index: 995;
+    animation: fadein .5s;
+}
+
+#solicitar-liberacao .title-solicitar-liberacao h1 {
+    text-align: center;
+    font-size: 27px;
+    color: var(--h1-color);
+    font-weight: 400;
+}
+
+#solicitar-liberacao .inputs-solicitar-liberacao {
+    display: flex;
+    width: 27vw;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.inputs-align-solicitar-liberacao-1, 
+.inputs-align-solicitar-liberacao-2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+#solicitar-liberacao .inputs-solicitar-liberacao label {
+    display: flex;
+    flex-direction: column;
+}
+
+#solicitar-liberacao .inputs-solicitar-liberacao input {
+    display: flex;
+    height: 40px;
+    font-size: 18px;
+    padding: 0 5px;
+    margin-bottom: 10px;
+    border: 1px solid #8e8f8f;
+    border-radius: 5px;
+    outline-color: var(--color-outline);
+}
+
+#ident-os-solicitar-liberacao, #terminal-solicitar-liberacao {
+    width: 200px;
+}
+
+#cnl-solicitar-liberacao {
+    width: 120px;
+}
+
+#flag-port-solicitar-liberacao {
+    width: 50px;
+    height: 40px;
+    outline-color: var(--color-outline);
+    border-radius: 5px;
+    margin-left: 5px;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+#solicitar-liberacao .buttons-solicitar-liberacao {
+    display: flex;
+    justify-content: space-around;
+    width: 27vw;
+}
+
+#solicitar-liberacao .buttons-solicitar-liberacao button {
+    width: 100px;
+    height: 35px;
+    padding: 5px;
+    border: none;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 17px;
+    margin-top: 30px;
+    background-color: var(--bg-buttons);
+    cursor: pointer;
+}
+
+#solicitar-liberacao .buttons-solicitar-liberacao button:hover {
+    background-color: #002fa7;
+    box-shadow: 0 0 10px 0 #002fa7;
+}
+
+#resultado-solicitar-liberacao {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 10px;
+    width: 350px;
+    height: 35px;
+    text-align: center;
+    font-size: 15px;
+}
+
+#modal-resultado-solicitar-liberacao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 350px;
+    height: 35px;
+    background-color: var(--bg);
+    z-index: 996;
+}
+
+#loader-solicitar-liberacao {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    width: 40px;
+    height: 40px;
+}
+
+/* ----- CONFIRMAR LIBERAÇÃO ----- */
+
+#confirmar-liberacao {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    padding: 20px;
+    width: 31vw;
+    height: auto;
+    background-color: #fff;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.5); 
+    box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.5);   
+    z-index: 995;
+    animation: fadein .5s;
+}
+
+#confirmar-liberacao .title-confirmar-liberacao h1 {
+    text-align: center;
+    font-size: 27px;
+    color: var(--h1-color);
+    font-weight: 400;
+}
+
+#confirmar-liberacao .inputs-confirmar-liberacao {
+    display: flex;
+    width: 27vw;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.inputs-align-confirmar-liberacao-1, 
+.inputs-align-confirmar-liberacao-2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+#confirmar-liberacao .inputs-confirmar-liberacao label {
+    display: flex;
+    flex-direction: column;
+}
+
+#confirmar-liberacao .inputs-confirmar-liberacao input {
+    display: flex;
+    height: 40px;
+    font-size: 18px;
+    padding: 0 5px;
+    margin-bottom: 10px;
+    border: 1px solid #8e8f8f;
+    border-radius: 5px;
+    outline-color: var(--color-outline);
+}
+
+#ident-os-confirmar-liberacao, #terminal-confirmar-liberacao {
+    width: 200px;
+}
+
+#cnl-confirmar-liberacao {
+    width: 120px;
+}
+
+#flag-port-confirmar-liberacao {
+    width: 50px;
+    height: 40px;
+    outline-color: var(--color-outline);
+    border-radius: 5px;
+    margin-left: 5px;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+#confirmar-liberacao .buttons-confirmar-liberacao {
+    display: flex;
+    width: 27vw;
+    justify-content: space-around;
+}
+
+#confirmar-liberacao .buttons-confirmar-liberacao button {
+    width: 100px;
+    height: 35px;
+    padding: 5px;
+    border: none;
+    border-radius: 20px;
+    font-size: 17px;
+    color: #fff;
+    margin-top: 30px;
+    background-color: var(--bg-buttons);
+    cursor: pointer;
+}
+
+#confirmar-liberacao .buttons-confirmar-liberacao button:hover {
+    background-color: #002fa7;
+    box-shadow: 0 0 10px 0 #002fa7;
+}
+
+#resultado-confirmar-liberacao {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 10px;
+    width: 350px;
+    height: 35px;
+    text-align: center;
+    font-size: 15px;
+}
+
+#modal-resultado-confirmar-liberacao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 350px;
+    height: 35px;
+    background-color: var(--bg);
+    z-index: 996;
+}
+
+#loader-confirmar-liberacao {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    width: 40px;
+    height: 40px;
+}
+
+/* ----- CANCELAR LIBERAÇÃO ----- */
+
+#cancelar-liberacao {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    padding: 20px;
+    width: 30vw;
+    height: auto;
+    background-color: #fff;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.5); 
+    box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.5);   
+    z-index: 995;
+    animation: fadein .5s;
+}
+
+#cancelar-liberacao .title-cancelar-liberacao h1 {
+    text-align: center;
+    font-size: 27px;
+    color: var(--h1-color);
+    font-weight: 400;
+}
+
+#cancelar-liberacao .inputs-cancelar-liberacao {
+    display: flex;
+    width: 25vw;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.inputs-align-cancelar-liberacao-1, 
+.inputs-align-cancelar-liberacao-2 {
+    margin: auto;
+}
+
+#cancelar-liberacao .inputs-cancelar-liberacao label {
+    display: flex;
+    flex-direction: column;
+}
+
+#cancelar-liberacao .inputs-cancelar-liberacao input {
+    display: flex;
+    height: 40px;
+    font-size: 18px;
+    padding: 0 5px;
+    margin-bottom: 10px;
+    border: 1px solid #8e8f8f;
+    border-radius: 5px;
+    outline-color: var(--color-outline);
+}
+
+#ident-os-cancelar-liberacao, 
+#cnl-cancelar-liberacao, 
+#terminal-cancelar-liberacao {
+    width: 320px;
+}
+
+#cancelar-liberacao .buttons-cancelar-liberacao {
+    display: flex;
+    justify-content: space-around;
+    width: 27vw;
+}
+
+#cancelar-liberacao .buttons-cancelar-liberacao button {
+    width: 100px;
+    height: 35px;
+    padding: 5px;
+    border: none;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 17px;
+    margin-top: 30px;
+    background-color: var(--bg-buttons);
+    cursor: pointer;
+}
+
+#cancelar-liberacao .buttons-cancelar-liberacao button:hover {
+    background-color: #002fa7;
+    box-shadow: 0 0 10px 0 #002fa7;
+}
+
+#resultado-cancelar-liberacao {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 10px;
+    width: 320px;
+    height: 35px;
+    text-align: center;
+    font-size: 15px;
+}
+
+#modal-resultado-cancelar-liberacao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 320px;
+    height: 35px;
+    background-color: var(--bg);
+    z-index: 996;
+}
+
+#loader-cancelar-liberacao {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    width: 40px;
+    height: 40px;
+}
+
+@media screen and (min-width: 1800px) {
+
+    /* ----- CONSULTAR TERMINAL ----- */
+    .title-menu-left h1 {
+        font-size: 40px;
+    }
+
+    .menu-left ul li {
+        font-size: 25px;
+        height: 70px;
+    }
+
+    #consultar-terminal {
+        height: auto;
+    }
+
+    #consultar-terminal .title-consultar-terminal h1,
+    #reservar-terminal .title-reservar-terminal h1,
+    #confirmar-reserva .title-confirmar-reserva h1,
+    #ocupar-confirmacao .title-ocupar-confirmacao h1,
+    #cancelar-confirmacao .title-cancelar-confirmacao h1,
+    #cancelar-reserva .title-cancelar-reserva h1,
+    #solicitar-liberacao .title-solicitar-liberacao h1,
+    #confirmar-liberacao .title-confirmar-liberacao h1,
+    #cancelar-liberacao .title-cancelar-liberacao h1 {
+        font-size: 45px;
+    }
+
+    #consultar-terminal .inputs-consultar-terminal {
+        display: flex;
+        justify-content: space-between;
+        font-size: 25px;
+    }
+
+    #consultar-terminal .inputs-consultar-terminal input {
+        display: flex;
+        width: 23vw;
+        height: 60px;
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
+
+    #consultar-terminal .buttons-consultar-terminal button {
+        display: flex;
+        align-items: center;
+        width: 140px;
+        height: 50px;
+        border-radius: 30px;
+        font-size: 25px;
+        margin-bottom: 20px;
+    }
+
+    #resultado-consultar-terminal {
+        width: 750px;
+        height: 480px;
+        font-size: 23px;
+        margin-top: -50px;
+    }
+
+    #modal-resultado-consultar-terminal {
+        padding: 10px;
+        width: 730px;
+        height: 460px;
+    }
+
+    #btn-resultado-consultar-terminal button {
+        width: 200px;
+        height: 45px;
+        margin-top: 400px;
+        margin-left: 20px;
+        border-radius: 20px;
+        font-size: 22px;
+    }
+
+    /* ----- RESERVAR TERMINAL ----- */
+
+    #content-aviso-reservar-terminal p {
+        font-size: 21px;
+        margin-bottom: 20px;
+    }
+
+    .inputs-align-reservar-terminal-1, 
+    .inputs-align-reservar-terminal-2,
+    .inputs-align-reservar-terminal-3 {
+        font-size: 25px;
+        max-width: 23vw;
+    }
+
+    #reservar-terminal .inputs-reservar-terminal input {
+        height: 60px;
+        font-size: 30px;
+    }
+
+    #cnl-reservar-terminal, #at-reservar-terminal {
+        width: 210px;
+    }
+
+    #terminal-reservar-terminal, #nrc-reservar-terminal {
+        width: 440px;
+    }
+
+    #reservar-terminal .buttons-reservar-terminal button {
+        width: 140px;
+        height: 50px;
+        border-radius: 25px;
+        font-size: 25px;
+    }
+
+    #resultado-reservar-terminal, #modal-resultado-reservar-terminal {
+        width: 430px;
+        height: 45px;
+        font-size: 18px;
+    }
+
+    /* ----- CONFIRMAR RESERVA ----- */
+
+    #modal-inshab-confirmar-reserva,
+    #modal-insrec-confirmar-reserva,
+    #modal-insmud-confirmar-reserva,
+    #modal-altpro-confirmar-reserva  {
+        font-size: 25px;
+    }
+
+    #confirmar-reserva {
+        padding: 30px;
+        height: auto;
+    }
+
+    .confirmar-reserva-select-modal, #natureza-os-confirmar-reserva {
+        font-size: 30px;
+    }
+
+    #confirmar-reserva .inputs-confirmar-reserva input {
+        height: 60px;
+        font-size: 30px;
+    }
+
+    #content-aviso-confirmar-reserva-insrec,
+    #content-aviso-confirmar-reserva-insmud {
+        font-size: 21px;
+        margin-bottom: 20px;
+    }
+
+    #cnl-inshab-confirmar-reserva, #ident-os-inshab-confirmar-reserva,
+    #cnl-insrec-confirmar-reserva, #ident-os-insrec-confirmar-reserva,
+    #cnl-insmud-confirmar-reserva, #ident-os-insmud-confirmar-reserva,
+    #cnl-altpro-confirmar-reserva, #ident-os-altpro-confirmar-reserva {
+        width: 300px;
+    }
+
+    #id-estacao-inshab-confirmar-reserva, #terminal-inshab-confirmar-reserva,
+    #id-estacao-insrec-confirmar-reserva, #terminal-insrec-confirmar-reserva,
+    #id-estacao-insmud-confirmar-reserva, #terminal-insmud-confirmar-reserva,
+    #id-estacao-altpro-confirmar-reserva, #terminal-altpro-confirmar-reserva {
+        width: 230px;
+    }
+
+    #id-fibra-inshab-confirmar-reserva, #nrc-inshab-confirmar-reserva,
+    #id-fibra-insrec-confirmar-reserva, #nrc-insrec-confirmar-reserva,
+    #id-fibra-insmud-confirmar-reserva, #nrc-insmud-confirmar-reserva,
+    #id-fibra-altpro-confirmar-reserva, #nrc-altpro-confirmar-reserva {
+        width: 300px;
+    }
+
+    #flag-port-inshab-confirmar-reserva,
+    #flag-port-insrec-confirmar-reserva,
+    #flag-port-insmud-confirmar-reserva,
+    #flag-port-altpro-confirmar-reserva {
+        width: 80px;
+        height: 50px;
+        font-size: 30px;
+    }
+
+    #confirmar-reserva .buttons-inshab-confirmar-reserva button,
+    #confirmar-reserva .buttons-insrec-confirmar-reserva button,
+    #confirmar-reserva .buttons-insmud-confirmar-reserva button,
+    #confirmar-reserva .buttons-altpro-confirmar-reserva button  {
+        width: 170px;
+        height: 50px;
+        border-radius: 30px;
+        font-size: 24px;
+        margin-bottom: -10px;
+    }
+
+    #resultado-confirmar-reserva-inshab,
+    #resultado-confirmar-reserva-insrec,
+    #resultado-confirmar-reserva-insmud,
+    #resultado-confirmar-reserva-altpro {
+        margin-top: 10px;
+        width: 680px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    #modal-resultado-confirmar-reserva-inshab,
+    #modal-resultado-confirmar-reserva-insrec,
+    #modal-resultado-confirmar-reserva-insmud,
+    #modal-resultado-confirmar-reserva-altpro {
+        width: 680px;
+        height: 50px;
+    }
+    
+    #loader-confirmar-reserva-inshab,
+    #loader-confirmar-reserva-insrec,
+    #loader-confirmar-reserva-insmud,
+    #loader-confirmar-reserva-altpro {
+        width: 60px;
+        height: 60px;
+    }
+
+    /* ----- OCUPAR CONFIRMAÇÃO ----- */
+
+    .ocupar-confirmacao-select-modal, #natureza-os-ocupar-confirmacao {
+        font-size: 30px;
+    }
+
+    #modal-inshab-ocupar-confirmacao,
+    #modal-insrec-ocupar-confirmacao,
+    #modal-insmud-ocupar-confirmacao,
+    #modal-altpro-ocupar-confirmacao {
+        font-size: 25px;
+    }
+
+    #ocupar-confirmacao .inputs-ocupar-confirmacao input {
+        height: 60px;
+    }
+
+    #ident-os-inshab-ocupar-confirmacao, #terminal-inshab-ocupar-confirmacao,
+    #ident-os-insrec-ocupar-confirmacao, #terminal-insrec-ocupar-confirmacao,
+    #ident-os-insmud-ocupar-confirmacao, #terminal-insmud-ocupar-confirmacao,
+    #ident-os-altpro-ocupar-confirmacao, #terminal-altpro-ocupar-confirmacao {
+        width: 320px;
+    }
+
+    #cnl-inshab-ocupar-confirmacao,
+    #cnl-insrec-ocupar-confirmacao,
+    #cnl-insmud-ocupar-confirmacao,
+    #cnl-altpro-ocupar-confirmacao {
+        width: 200px;
+    }
+
+    #flag-port-inshab-ocupar-confirmacao,
+    #flag-port-insrec-ocupar-confirmacao,
+    #flag-port-insmud-ocupar-confirmacao,
+    #flag-port-altpro-ocupar-confirmacao {
+        width: 80px;
+        height: 50px;
+        font-size: 30px;
+    }
+
+    #ocupar-confirmacao .buttons-inshab-ocupar-confirmacao button,
+    #ocupar-confirmacao .buttons-insrec-ocupar-confirmacao button,
+    #ocupar-confirmacao .buttons-insmud-ocupar-confirmacao button,
+    #ocupar-confirmacao .buttons-altpro-ocupar-confirmacao button  {
+        width: 160px;
+        height: 50px;
+        border-radius: 30px;
+        font-size: 24px;
+        margin-top: 40px;
+        margin-bottom: 10px;
+    }
+
+    #resultado-ocupar-confirmacao-inshab,
+    #resultado-ocupar-confirmacao-insrec,
+    #resultado-ocupar-confirmacao-insmud,
+    #resultado-ocupar-confirmacao-altpro {
+        margin-top: 20px;
+        width: 580px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    #modal-resultado-ocupar-confirmacao-inshab,
+    #modal-resultado-ocupar-confirmacao-insrec,
+    #modal-resultado-ocupar-confirmacao-insmud,
+    #modal-resultado-ocupar-confirmacao-altpro {
+        width: 580px;
+        height: 50px;
+    }
+    
+    #loader-ocupar-confirmacao-inshab,
+    #loader-ocupar-confirmacao-insrec,
+    #loader-ocupar-confirmacao-insmud,
+    #loader-ocupar-confirmacao-altpro {
+        width: 60px;
+        height: 60px;
+    }
+
+    /* ----- CANCELAR CONFIRMAÇÃO ----- */
+
+    .cancelar-confirmacao-select-modal, #natureza-os-cancelar-confirmacao {
+        font-size: 30px;
+    }
+
+    #modal-inshab-cancelar-confirmacao,
+    #modal-insmud-cancelar-confirmacao,
+    #modal-subnum-cancelar-confirmacao {
+        font-size: 25px;
+    }
+
+    #cancelar-confirmacao .inputs-cancelar-confirmacao input {
+        height: 60px;
+        font-size: 30px;
+    }
+
+    #cancelar-confirmacao .buttons-inshab-cancelar-confirmacao button,
+    #cancelar-confirmacao .buttons-insmud-cancelar-confirmacao button,
+    #cancelar-confirmacao .buttons-subnum-cancelar-confirmacao button {
+        width: 160px;
+        height: 50px;
+        border-radius: 30px;
+        font-size: 24px;
+        margin-top: 40px;
+        margin-bottom: 10px;
+    }
+
+    #resultado-cancelar-confirmacao-inshab,
+    #resultado-cancelar-confirmacao-insmud,
+    #resultado-cancelar-confirmacao-subnum {
+        margin-top: 20px;
+        width: 490px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    #modal-resultado-cancelar-confirmacao-inshab,
+    #modal-resultado-cancelar-confirmacao-insmud,
+    #modal-resultado-cancelar-confirmacao-subnum {
+        width: 490px;
+        height: 50px;
+    }
+    
+    #loader-cancelar-confirmacao-inshab,
+    #loader-cancelar-confirmacao-insmud,
+    #loader-cancelar-confirmacao-subnum {
+        width: 60px;
+        height: 60px;
+    }
+
+    /* ----- CANCELAR RESERVA ----- */
+
+    .cancelar-reserva-select-modal, #natureza-os-cancelar-reserva {
+        font-size: 30px;
+    }
+
+    #cancelar-reserva .inputs-cancelar-reserva {
+        font-size: 25px;
+    }
+
+    #cancelar-reserva .inputs-cancelar-reserva input {
+        height: 60px;
+        font-size: 30px;
+    }
+
+    #cancelar-reserva {
+        font-size: 25px;
+    }
+
+    #cancelar-reserva .buttons-cancelar-reserva button {
+        width: 140px;
+        height: 50px;
+        border-radius: 30px;
+        font-size: 24px;
+        margin-top: 40px;
+        margin-bottom: 10px;
+    }
+
+    #resultado-cancelar-reserva,
+    #resultado-cancelar-reserva,
+    #resultado-cancelar-reserva {
+        margin-top: 20px;
+        width: 450px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    #modal-resultado-cancelar-reserva
+    #modal-resultado-cancelar-reserva,
+    #modal-resultado-cancelar-reserva {
+        width: 450px;
+        height: 50px;
+    }
+    
+    #loader-cancelar-reserva,
+    #loader-cancelar-reserva,
+    #loader-cancelar-reserva {
+        width: 60px;
+        height: 60px;
+    }
+
+    /* ----- SOLICITAR LIBERAÇÃO ----- */
+
+    #solicitar-liberacao .inputs-solicitar-liberacao {
+        font-size: 25px;
+    }
+
+    #solicitar-liberacao .inputs-solicitar-liberacao input {
+        height: 60px;
+        font-size: 30px;
+    }
+
+    #solicitar-liberacao .buttons-solicitar-liberacao button {
+        width: 160px;
+        height: 50px;
+        border-radius: 30px;
+        font-size: 24px;
+        margin-top: 40px;
+        margin-bottom: 10px;
+    }
+
+    #ident-os-solicitar-liberacao, #terminal-solicitar-liberacao {
+        width: 300px;
+    }
+    
+    #cnl-solicitar-liberacao {
+        width: 150px;
+    }
+    
+    #flag-port-solicitar-liberacao {
+        width: 80px;
+        height: 50px;
+        font-size: 30px;
+    }
+
+    #resultado-solicitar-liberacao,
+    #resultado-solicitar-liberacao,
+    #resultado-solicitar-liberacao {
+        margin-top: 20px;
+        width: 520px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    #modal-resultado-solicitar-liberacao,
+    #modal-resultado-solicitar-liberacao,
+    #modal-resultado-solicitar-liberacao {
+        width: 520px;
+        height: 50px;
+    }
+    
+    #loader-solicitar-liberacao,
+    #loader-solicitar-liberacao,
+    #loader-solicitar-liberacao {
+        width: 60px;
+        height: 60px;
+    }
+
+    /* ----- CONFIRMAR LIBERAÇÃO ----- */
+
+    #confirmar-liberacao .inputs-confirmar-liberacao {
+        font-size: 25px;
+    }
+
+    #confirmar-liberacao .inputs-confirmar-liberacao input {
+        height: 60px;
+        font-size: 30px;
+    }
+
+    #confirmar-liberacao .buttons-confirmar-liberacao button {
+        width: 160px;
+        height: 50px;
+        border-radius: 30px;
+        font-size: 24px;
+        margin-top: 40px;
+        margin-bottom: 10px;
+    }
+
+    #ident-os-confirmar-liberacao, #terminal-confirmar-liberacao {
+        width: 300px;
+    }
+    
+    #cnl-confirmar-liberacao {
+        width: 150px;
+    }
+    
+    #flag-port-confirmar-liberacao {
+        width: 80px;
+        height: 50px;
+        font-size: 30px;
+    }
+
+    #resultado-confirmar-liberacao,
+    #resultado-confirmar-liberacao,
+    #resultado-confirmar-liberacao {
+        margin-top: 20px;
+        width: 520px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    #modal-resultado-confirmar-liberacao,
+    #modal-resultado-confirmar-liberacao,
+    #modal-resultado-confirmar-liberacao {
+        width: 520px;
+        height: 50px;
+    }
+    
+    #loader-confirmar-liberacao,
+    #loader-confirmar-liberacao,
+    #loader-confirmar-liberacao {
+        width: 60px;
+        height: 60px;
+    }
+
+    /* ----- CANCELAR LIBERAÇÃO ----- */
+
+    #cancelar-liberacao .inputs-cancelar-liberacao {
+        font-size: 25px;
+    }
+
+    #cancelar-liberacao .inputs-cancelar-liberacao input {
+        height: 60px;
+        font-size: 30px;
+    }
+
+    #cancelar-liberacao .buttons-cancelar-liberacao button {
+        width: 160px;
+        height: 50px;
+        border-radius: 30px;
+        font-size: 24px;
+        margin-top: 40px;
+        margin-bottom: 10px;
+    }
+
+    #ident-os-cancelar-liberacao, 
+    #terminal-cancelar-liberacao,
+    #cnl-cancelar-liberacao  {
+        width: 450px;
+    }
+
+    #resultado-cancelar-liberacao,
+    #resultado-cancelar-liberacao,
+    #resultado-cancelar-liberacao {
+        margin-top: 20px;
+        width: 450px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    #modal-resultado-cancelar-liberacao,
+    #modal-resultado-cancelar-liberacao,
+    #modal-resultado-cancelar-liberacao {
+        width: 450px;
+        height: 50px;
+    }
+    
+    #loader-cancelar-liberacao,
+    #loader-cancelar-liberacao,
+    #loader-cancelar-liberacao {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media screen and (min-width: 2500px) {
+
+    /* ----- CONSULTAR TERMINAL ----- */
+
+    .title-menu-left h1 {
+        font-size: 50px;
+    }
+
+    .menu-left ul li {
+        font-size: 35px;
+        height: 100px;
+    }
+
+    #consultar-terminal {
+        height: auto;
+    }
+
+    #consultar-terminal .title-consultar-terminal h1,
+    #reservar-terminal .title-reservar-terminal h1,
+    #confirmar-reserva .title-confirmar-reserva h1,
+    #ocupar-confirmacao .title-ocupar-confirmacao h1,
+    #cancelar-confirmacao .title-cancelar-confirmacao h1,
+    #cancelar-reserva .title-cancelar-reserva h1,
+    #solicitar-liberacao .title-solicitar-liberacao h1,
+    #confirmar-liberacao .title-confirmar-liberacao h1,
+    #cancelar-liberacao .title-cancelar-liberacao h1 {
+        font-size: 60px;
+    }
+
+    #consultar-terminal .inputs-consultar-terminal {
+        display: flex;
+        justify-content: space-between;
+        font-size: 35px;
+    }
+
+    #consultar-terminal .inputs-consultar-terminal input {
+        display: flex;
+        width: 23vw;
+        height: 80px;
+        font-size: 45px;
+        margin-bottom: 20px;
+    }
+
+    #consultar-terminal .buttons-consultar-terminal button {
+        display: flex;
+        align-items: center;
+        width: 180px;
+        height: 70px;
+        border-radius: 35px;
+        font-size: 33px;
+        margin-bottom: 20px;
+    }
+
+    #resultado-consultar-terminal {
+        width: 1000px;
+        height: 650px;
+        font-size: 33px;
+        margin-top: -50px;
+    }
+
+    #modal-resultado-consultar-terminal {
+        padding: 10px;
+        width: 980px;
+        height: 630px;
+    }
+
+    #btn-resultado-consultar-terminal button {
+        width: 250px;
+        height: 70px;
+        margin-top: 490px;
+        margin-left: 20px;
+        border-radius: 40px;
+        font-size: 40px;
+    }
+
+    #loader-consultar-terminal {
+        width: 150px;
+        height: 150px;
+    }
+
+    /* ----- RESERVAR TERMINAL ----- */
+
+    #content-aviso-reservar-terminal p {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    .inputs-align-reservar-terminal-1, 
+    .inputs-align-reservar-terminal-2,
+    .inputs-align-reservar-terminal-3 {
+        font-size: 35px;
+        max-width: 23vw;
+    }
+
+    #reservar-terminal .inputs-reservar-terminal input {
+        height: 80px;
+        font-size: 45px;
+    }
+
+    #cnl-reservar-terminal, #at-reservar-terminal {
+        width: 275px;
+    }
+
+    #terminal-reservar-terminal, #nrc-reservar-terminal {
+        width: 580px;
+    }
+
+    #reservar-terminal .buttons-reservar-terminal button {
+        width: 200px;
+        height: 70px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        border-radius: 40px;
+        font-size: 35px;
+    }
+
+    #resultado-reservar-terminal, #modal-resultado-reservar-terminal {
+        width: 580px;
+        height: 70px;
+        font-size: 23px;
+        margin-top: 10px;
+    }
+
+    #loader-reservar-terminal {
+        width: 70px;
+        height: 70px;
+    }
+
+    /* ----- CONFIRMAR RESERVA ----- */
+
+    #modal-inshab-confirmar-reserva,
+    #modal-insrec-confirmar-reserva,
+    #modal-insmud-confirmar-reserva,
+    #modal-altpro-confirmar-reserva {
+        font-size: 35px;
+    }
+
+    #confirmar-reserva {
+        padding: 30px;
+        height: auto;
+    }
+
+    .confirmar-reserva-select-modal, #natureza-os-confirmar-reserva {
+        font-size: 44px;
+    }
+
+    #confirmar-reserva .inputs-confirmar-reserva input {
+        height: 80px;
+        font-size: 45px;
+    }
+
+    #content-aviso-confirmar-reserva-insrec,
+    #content-aviso-confirmar-reserva-insmud {
+        font-size: 29px;
+        margin-bottom: 20px;
+    }
+
+    #cnl-inshab-confirmar-reserva, #ident-os-inshab-confirmar-reserva,
+    #cnl-insrec-confirmar-reserva, #ident-os-insrec-confirmar-reserva,
+    #cnl-insmud-confirmar-reserva, #ident-os-insmud-confirmar-reserva,
+    #cnl-altpro-confirmar-reserva, #ident-os-altpro-confirmar-reserva {
+        width: 430px;
+    }
+
+    #id-estacao-inshab-confirmar-reserva, #terminal-inshab-confirmar-reserva,
+    #id-estacao-insrec-confirmar-reserva, #terminal-insrec-confirmar-reserva,
+    #id-estacao-insmud-confirmar-reserva, #terminal-insmud-confirmar-reserva,
+    #id-estacao-altpro-confirmar-reserva, #terminal-altpro-confirmar-reserva {
+        width: 320px;
+    }
+
+    #id-fibra-inshab-confirmar-reserva, #nrc-inshab-confirmar-reserva,
+    #id-fibra-insrec-confirmar-reserva, #nrc-insrec-confirmar-reserva,
+    #id-fibra-insmud-confirmar-reserva, #nrc-insmud-confirmar-reserva,
+    #id-fibra-altpro-confirmar-reserva, #nrc-altpro-confirmar-reserva {
+        width: 420px;
+    }
+
+    #flag-port-inshab-confirmar-reserva,
+    #flag-port-insrec-confirmar-reserva,
+    #flag-port-insmud-confirmar-reserva,
+    #flag-port-altpro-confirmar-reserva {
+        width: 120px;
+        height: 80px;
+        font-size: 35px;
+    }
+
+    #confirmar-reserva .buttons-inshab-confirmar-reserva button,
+    #confirmar-reserva .buttons-insrec-confirmar-reserva button,
+    #confirmar-reserva .buttons-insmud-confirmar-reserva button,
+    #confirmar-reserva .buttons-altpro-confirmar-reserva button {
+        width: 230px;
+        height: 75px;
+        border-radius: 45px;
+        font-size: 35px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+
+    #resultado-confirmar-reserva-inshab,
+    #resultado-confirmar-reserva-insrec,
+    #resultado-confirmar-reserva-insmud,
+    #resultado-confirmar-reserva-altpro {
+        margin-top: 20px;
+        width: 900px;
+        height: 80px;
+        font-size: 28px;
+    }
+    
+    #modal-resultado-confirmar-reserva-inshab,
+    #modal-resultado-confirmar-reserva-insrec,
+    #modal-resultado-confirmar-reserva-insmud,
+    #modal-resultado-confirmar-reserva-altpro {
+        width: 900px;
+        height: 80px;
+    }
+    
+    #loader-confirmar-reserva-inshab,
+    #loader-confirmar-reserva-insrec,
+    #loader-confirmar-reserva-insmud,
+    #loader-confirmar-reserva-altpro {
+        width: 70px;
+        height: 70px;
+    }
+
+    /* ----- OCUPAR CONFIRMAÇÃO ----- */
+
+    .ocupar-confirmacao-select-modal, #natureza-os-ocupar-confirmacao {
+        font-size: 44px;
+    }
+
+    #modal-inshab-ocupar-confirmacao,
+    #modal-insrec-ocupar-confirmacao,
+    #modal-insmud-ocupar-confirmacao,
+    #modal-altpro-ocupar-confirmacao {
+        font-size: 35px;
+    }
+
+    #ocupar-confirmacao .inputs-ocupar-confirmacao input {
+        height: 80px;
+        font-size: 45px;
+    }
+
+    #ident-os-inshab-ocupar-confirmacao, #terminal-inshab-ocupar-confirmacao,
+    #ident-os-insrec-ocupar-confirmacao, #terminal-insrec-ocupar-confirmacao,
+    #ident-os-insmud-ocupar-confirmacao, #terminal-insmud-ocupar-confirmacao,
+    #ident-os-altpro-ocupar-confirmacao, #terminal-altpro-ocupar-confirmacao {
+        width: 420px;
+    }
+
+    #cnl-inshab-ocupar-confirmacao,
+    #cnl-insrec-ocupar-confirmacao,
+    #cnl-insmud-ocupar-confirmacao,
+    #cnl-altpro-ocupar-confirmacao {
+        width: 310px;
+    }
+
+    #flag-port-inshab-ocupar-confirmacao,
+    #flag-port-insrec-ocupar-confirmacao,
+    #flag-port-insmud-ocupar-confirmacao,
+    #flag-port-altpro-ocupar-confirmacao {
+        width: 120px;
+        height: 80px;
+        font-size: 35px;
+    }
+
+    #ocupar-confirmacao .buttons-inshab-ocupar-confirmacao button,
+    #ocupar-confirmacao .buttons-insrec-ocupar-confirmacao button,
+    #ocupar-confirmacao .buttons-insmud-ocupar-confirmacao button,
+    #ocupar-confirmacao .buttons-altpro-ocupar-confirmacao button {
+        width: 230px;
+        height: 75px;
+        border-radius: 45px;
+        font-size: 35px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+
+    #resultado-ocupar-confirmacao-inshab,
+    #resultado-ocupar-confirmacao-insrec,
+    #resultado-ocupar-confirmacao-insmud,
+    #resultado-ocupar-confirmacao-altpro {
+        margin-top: 30px;
+        width: 770px;
+        height: 80px;
+        font-size: 28px;
+    }
+    
+    #modal-resultado-ocupar-confirmacao-inshab,
+    #modal-resultado-ocupar-confirmacao-insrec,
+    #modal-resultado-ocupar-confirmacao-insmud,
+    #modal-resultado-ocupar-confirmacao-altpro {
+        width: 770px;
+        height: 80px;
+    }
+    
+    #loader-ocupar-confirmacao-inshab,
+    #loader-ocupar-confirmacao-insrec,
+    #loader-ocupar-confirmacao-insmud,
+    #loader-ocupar-confirmacao-altpro {
+        width: 70px;
+        height: 70px;
+    }
+
+    /* ----- CANCELAR CONFIRMAÇÃO ----- */
+
+    .cancelar-confirmacao-select-modal, #natureza-os-cancelar-confirmacao {
+        font-size: 45px;
+    }
+
+    #modal-inshab-cancelar-confirmacao,
+    #modal-insmud-cancelar-confirmacao,
+    #modal-subnum-cancelar-confirmacao {
+        font-size: 35px;
+    }
+
+    #cancelar-confirmacao .inputs-cancelar-confirmacao input {
+        width: 27vw;
+        height: 80px;
+        font-size: 45px;
+    }
+
+    #cancelar-confirmacao .buttons-inshab-cancelar-confirmacao button,
+    #cancelar-confirmacao .buttons-insmud-cancelar-confirmacao button,
+    #cancelar-confirmacao .buttons-subnum-cancelar-confirmacao button {
+        width: 200px;
+        height: 75px;
+        border-radius: 45px;
+        font-size: 35px;
+        margin-top: 40px;
+        margin-bottom: 10px;
+    }
+
+    #resultado-cancelar-confirmacao-inshab,
+    #resultado-cancelar-confirmacao-insmud,
+    #resultado-cancelar-confirmacao-subnum {
+        margin-top: 30px;
+        width: 650px;
+        height: 80px;
+        font-size: 28px;
+    }
+    
+    #modal-resultado-cancelar-confirmacao-inshab,
+    #modal-resultado-cancelar-confirmacao-insmud,
+    #modal-resultado-cancelar-confirmacao-subnum {
+        width: 650px;
+        height: 80px;
+    }
+    
+    #loader-cancelar-confirmacao-inshab,
+    #loader-cancelar-confirmacao-insmud,
+    #loader-cancelar-confirmacao-subnum {
+        width: 70px;
+        height: 70px;
+    }
+
+    /* ----- CANCELAR RESERVA ----- */
+
+    #cancelar-reserva .inputs-cancelar-reserva {
+        font-size: 35px;
+    }
+
+    #cancelar-reserva .inputs-cancelar-reserva input {
+        height: 80px;
+        font-size: 45px;
+    }
+
+    #cancelar-reserva .buttons-cancelar-reserva button {
+        width: 180px;
+        height: 75px;
+        border-radius: 45px;
+        font-size: 35px;
+        margin-top: 50px;
+        margin-bottom: 10px;
+    }
+
+    #resultado-cancelar-reserva,
+    #resultado-cancelar-reserva,
+    #resultado-cancelar-reserva {
+        margin-top: 30px;
+        width: 600px;
+        height: 80px;
+        font-size: 28px;
+    }
+    
+    #modal-resultado-cancelar-reserva
+    #modal-resultado-cancelar-reserva,
+    #modal-resultado-cancelar-reserva {
+        width: 600px;
+        height: 80px;
+    }
+    
+    #loader-cancelar-reserva,
+    #loader-cancelar-reserva,
+    #loader-cancelar-reserva {
+        width: 70px;
+        height: 70px;
+    }
+
+    /* ----- SOLICITAR LIBERAÇÃO ----- */
+
+    #solicitar-liberacao .inputs-solicitar-liberacao {
+        font-size: 35px;
+    }
+
+    #solicitar-liberacao .inputs-solicitar-liberacao input {
+        height: 80px;
+        font-size: 45px;
+    }
+
+    #solicitar-liberacao .buttons-solicitar-liberacao button {
+        width: 210px;
+        height: 75px;
+        border-radius: 45px;
+        font-size: 35px;
+        margin-top: 40px;
+        margin-bottom: 10px;
+    }
+
+    #ident-os-solicitar-liberacao, #terminal-solicitar-liberacao {
+        width: 400px;
+    }
+    
+    #cnl-solicitar-liberacao {
+        width: 270px;
+    }
+    
+    #flag-port-solicitar-liberacao {
+        width: 120px;
+        height: 80px;
+        font-size: 35px;
+    }
+
+    #resultado-solicitar-liberacao,
+    #resultado-solicitar-liberacao,
+    #resultado-solicitar-liberacao {
+        margin-top: 30px;
+        width: 690px;
+        height: 80px;
+        font-size: 28px;
+    }
+    
+    #modal-resultado-solicitar-liberacao,
+    #modal-resultado-solicitar-liberacao,
+    #modal-resultado-solicitar-liberacao {
+        width: 690px;
+        height: 80px;
+    }
+    
+    #loader-solicitar-liberacao,
+    #loader-solicitar-liberacao,
+    #loader-solicitar-liberacao {
+        width: 70px;
+        height: 70px;
+    }
+
+    /* ----- CONFIRMAR LIBERAÇÃO ----- */
+
+    #confirmar-liberacao .inputs-confirmar-liberacao {
+        font-size: 35px;
+    }
+
+    #confirmar-liberacao .inputs-confirmar-liberacao input {
+        height: 80px;
+        font-size: 45px;
+    }
+
+    #confirmar-liberacao .buttons-confirmar-liberacao button {
+        width: 210px;
+        height: 75px;
+        border-radius: 45px;
+        font-size: 35px;
+        margin-top: 40px;
+        margin-bottom: 10px;
+    }
+
+    #ident-os-confirmar-liberacao, #terminal-confirmar-liberacao {
+        width: 400px;
+    }
+    
+    #cnl-confirmar-liberacao {
+        width: 270px;
+    }
+    
+    #flag-port-confirmar-liberacao {
+        width: 120px;
+        height: 80px;
+        font-size: 35px;
+    }
+
+    #resultado-confirmar-liberacao,
+    #resultado-confirmar-liberacao,
+    #resultado-confirmar-liberacao {
+        margin-top: 30px;
+        width: 690px;
+        height: 80px;
+        font-size: 28px;
+    }
+    
+    #modal-resultado-confirmar-liberacao,
+    #modal-resultado-confirmar-liberacao,
+    #modal-resultado-confirmar-liberacao {
+        width: 690px;
+        height: 80px;
+    }
+    
+    #loader-confirmar-liberacao,
+    #loader-confirmar-liberacao,
+    #loader-confirmar-liberacao {
+        width: 70px;
+        height: 70px;
+    }
+
+    /* ----- CANCELAR LIBERAÇÃO ----- */
+
+    #cancelar-liberacao .inputs-cancelar-liberacao {
+        font-size: 35px;
+    }
+
+    #cancelar-liberacao .inputs-cancelar-liberacao input {
+        height: 80px;
+        font-size: 45px;
+    }
+
+    #cancelar-liberacao .buttons-cancelar-liberacao button {
+        width: 200px;
+        height: 75px;
+        border-radius: 45px;
+        font-size: 35px;
+        margin-top: 40px;
+        margin-bottom: 10px;
+    }
+
+    #ident-os-cancelar-liberacao, 
+    #terminal-cancelar-liberacao,
+    #cnl-cancelar-liberacao  {
+        width: 600px;
+    }
+
+    #resultado-cancelar-liberacao,
+    #resultado-cancelar-liberacao,
+    #resultado-cancelar-liberacao {
+        margin-top: 30px;
+        width: 600px;
+        height: 80px;
+        font-size: 28px;
+    }
+    
+    #modal-resultado-cancelar-liberacao,
+    #modal-resultado-cancelar-liberacao,
+    #modal-resultado-cancelar-liberacao {
+        width: 600px;
+        height: 80px;
+    }
+    
+    #loader-cancelar-liberacao,
+    #loader-cancelar-liberacao,
+    #loader-cancelar-liberacao {
+        width: 70px;
+        height: 70px;
+    }
+}

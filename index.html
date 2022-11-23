@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Terus Web</title>
+</head>
+<body>
+    <div id="modal-opacity"></div>
+ 
+    <section>
+        <div class="container-left">
+            <div class="title-menu-left">
+                <h1>Terus Web</h1>
+            </div>
+
+            <nav class="menu-left">
+                <ul>
+                    <li onclick="openConsultarTerminal()" class="consultar-terminal-li"><i class="fa-solid fa-magnifying-glass"></i>Consultar Terminal</li>
+                    <li onclick="openReservarTerminal()" class="reservar-terminal-li"><i class="fa-solid fa-thumbtack"></i>Reservar Terminal</li>
+                    <li onclick="openConfirmarReserva()" class="confirmar-reserva-li"><i class="fa-solid fa-check"></i>Confirmar Reserva</li>
+                    <li onclick="openOcuparConfirmacao()" class="ocupar-confirmacao-li"><i class="fa-solid fa-lock"></i>Ocupar Confirmação</li>
+                    <li onclick="openCancelarConfirmacao()" class="cancelar-confirmacao-li"><i class="fa-solid fa-xmark"></i>Cancelar Confirmação</li>
+                    <li onclick="openCancelarReserva()" class="cancelar-reserva-li"><i class="fa-solid fa-xmark"></i>Cancelar Reserva</li>
+                    <li onclick="openSolicitarLiberacao()" class="solicitar-liberacao-li"><i class="fa-solid fa-lock-open"></i>Solicitar Liberação</li>
+                    <li onclick="openConfirmarLiberacao()" class="confirmar-liberacao-li"><i class="fa-solid fa-check"></i>Confirmar Liberação</li>
+                    <li onclick="openCancelarLiberacao()" class="cancelar-liberacao-li"><i class="fa-solid fa-xmark"></i>Cancelar Liberação</li>
+                </ul> 
+            </nav>
+        </div>
+    </section>
+
+    <header>
+        <button id="logout">Logout</button>
+    </header>
+
+    <section>
+        <div id="content-info">
+            <!-- ----- CONSULTAR TERMINAL ----- -->
+            <div id="consultar-terminal">
+                <div class="title-consultar-terminal">
+                    <h1>Consultar Terminal</h1>
+                </div>
+
+                <div class="inputs-consultar-terminal">
+                    <div id="modal-opacity-consultar-terminal"></div>
+                    <label for="cnl-consultar-terminal">CNL:
+                        <input class="input-value" type="text" name="cnl-consultar-terminal" id="cnl-consultar-terminal" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/\D/g, '');">
+                    </label>
+
+                    <label for="terminal-consultar-terminal">DDD + Terminal:
+                        <input class="input-value" type="text" name="terminal-consultar-terminal" id="terminal-consultar-terminal" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                    </label>
+                </div>
+
+                <div class="buttons-consultar-terminal">
+                    <button id="btn-consultar-terminal" name="btn-consultar-terminal">Executar</button>
+                    <button id="btn-limpar-consultar-terminal" onclick="limparConsultarTerminal()">Limpar</button>
+                    <button id="btn-fechar-consultar-terminal" onclick="closeConsultarTerminal()">Fechar</button>
+                </div>
+
+                <div id="resultado-consultar-terminal">            
+                    <img id="loader-consultar-terminal" src="img/loader.gif">
+                    <div id="modal-resultado-consultar-terminal"></div>
+
+                    <div id="btn-resultado-consultar-terminal">
+                        <button onclick="voltarConsultarTerminal()">Voltar</button>
+                        <button onclick="closeResultadoConsultarTerminal()">Fechar</button>
+                    </div>
+                </div>
+            </div>
+            <!-- ----- RESERVAR TERMINAL ----- -->
+            <div id="reservar-terminal">
+                <div class="title-reservar-terminal">
+                    <h1>RESERVAR TERMINAL</h1>
+                </div>
+
+                <div id="content-aviso-reservar-terminal">
+                    <p>PRÉ-REQUISITO: Terminal deve estar livre.</p>
+                </div>
+
+                <div class="inputs-reservar-terminal">
+                    <div id="modal-opacity-reservar-terminal"></div>
+                    <div class="inputs-align-reservar-terminal-1">
+                        <label for="cnl-reservar-terminal">CNL:
+                            <input class="input-value" type="text" name="cnl-reservar-terminal" id="cnl-reservar-terminal" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                        </label>
+    
+                        <label for="at-reservar-terminal">Área Telefônica:
+                            <input class="input-value" type="text" name="at-reservar-terminal" id="at-reservar-terminal" maxlength="2" oninput="this.value = this.value.toUpperCase(); this.value = this.value.replace(/[^\w\.]|\d/g, '')">
+                        </label>
+                    </div>
+
+                    <div class="inputs-align-reservar-terminal-2">
+                        <label for="terminal-reservar-terminal">DDD + Terminal:
+                            <input class="input-value" type="text" name="terminal-reservar-terminal" id="terminal-reservar-terminal"oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                        </label>
+                    </div>
+
+                    <div class="inputs-align-reservar-terminal-3">    
+                        <label for="nrc-reservar-terminal">NRC:
+                            <input class="input-value" type="text" name="nrc-reservar-terminal" id="nrc-reservar-terminal" oninput="this.value = this.value.replace(/\s+/g, '');">
+                        </label>
+                    </div>
+
+                    <div id="resultado-reservar-terminal">
+                        <img id="loader-reservar-terminal" src="img/loader.gif">
+                        <div id="modal-resultado-reservar-terminal"></div>
+                    </div>
+                </div>
+
+                <div class="buttons-reservar-terminal">
+                    <button id="btn-reservar-terminal">Executar</button>
+                    <button id="btn-limpar-reservar-terminal" onclick="limparReservarTerminal()">Limpar</button>
+                    <button id="btn-fechar-reservar-terminal" onclick="closeReservarTerminal()">Fechar</button>
+                </div>
+            </div>
+            <!-- ----- CONFIRMAR RESERVA ----- -->
+            <div id="confirmar-reserva">
+                <div class="title-confirmar-reserva">
+                    <h1>CONFIRMAR RESERVA</h1>
+                </div>
+
+                <div class="inputs-confirmar-reserva">
+                    <div class="confirmar-reserva-select-modal">
+                        <label for="natureza-os-confirmar-reserva">Selecione uma opção:</label>
+                        <select name="natureza-os-confirmar-reserva" id="natureza-os-confirmar-reserva" onclick="mostrarReserva(this.value)">
+                            <option value=""></option>
+                            <option value="inshab">INSHAB</option>
+                            <option value="insrec">INSREC</option>
+                            <option value="insmud">INSMUD</option>
+                            <option value="altpro">ALTPRO</option>
+                        </select>
+                    </div>
+
+                    <div id="content-aviso-confirmar-reserva-insrec">
+                        <p>PRÉ-REQUISITO: Terminal deve estar bloqueado 119 ou QRTN.</p>
+                    </div>
+
+                    <div id="content-aviso-confirmar-reserva-insmud">
+                        <p>PRÉ-REQUISITO: Terminal deve estar ocupado como Metálico.</p>
+                    </div>
+                    <!-- ----- CONFIRMAR RESERVA MODAL INSHAB ----- -->
+                    <div id="modal-opacity-2"></div>
+                    <div id="modal-inshab-confirmar-reserva">
+                        <div class="inputs-align-inshab-confirmar-reserva-1">
+                            <label for="ident-os-inshab-confirmar-reserva">Ordem:
+                                <input class="input-value" type="text" name="ident-os-inshab-confirmar-reserva" id="ident-os-inshab-confirmar-reserva" oninput="this.value = this.value.replace(/\s+/g, '');">
+                            </label>
+    
+                            <label for="cnl-inshab-confirmar-reserva">CNL:
+                                <input class="input-value" type="text" name="cnl-inshab-confirmar-reserva" id="cnl-inshab-confirmar-reserva" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                            </label>
+                        </div>
+
+                        <div class="inputs-align-inshab-confirmar-reserva-2">  
+                            <label for="id-estacao-inshab-confirmar-reserva">Área Telefônica:
+                                <input class="input-value" type="text" name="id-estacao-inshab-confirmar-reserva" id="id-estacao-inshab-confirmar-reserva" maxlength="2" oninput="this.value = this.value.toUpperCase()">
+                            </label>
+                            
+                            <label for="terminal-inshab-confirmar-reserva">DDD + Terminal:
+                                <input class="input-value" type="text" name="terminal-inshab-confirmar-reserva" id="terminal-inshab-confirmar-reserva" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                            </label>
+    
+                            <label for="flag-port-inshab-confirmar-reserva">Flag. Port.:
+                                <select name="flag-port-inshab-confirmar-reserva" id="flag-port-inshab-confirmar-reserva">
+                                    <option value=""></option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </label>
+                        </div>
+
+                        <div class="inputs-align-inshab-confirmar-reserva-3">
+                            <label for="nrc-inshab-confirmar-reserva">NRC:
+                                <input class="input-value" type="text" name="nrc-inshab-confirmar-reserva" id="nrc-inshab-confirmar-reserva" oninput="this.value = this.value.replace(/\s+/g, '');">
+                            </label>
+                            
+                            <label for="id-fibra-inshab-confirmar-reserva">ID Fibra:
+                                <input class="input-value" type="text" name="id-fibra-inshab-confirmar-reserva" id="id-fibra-inshab-confirmar-reserva" onkeyup="this.value = this.value.replace(/\.|\-/g, '').replace(/\s+/g, '');">
+                            </label>
+                        </div>
+                        
+                        <div id="resultado-confirmar-reserva-inshab">
+                            <img id="loader-confirmar-reserva-inshab" src="img/loader.gif">
+                            <div id="modal-resultado-confirmar-reserva-inshab"></div>
+                        </div>
+
+                        <div class="buttons-inshab-confirmar-reserva">
+                            <button id="btn-inshab-confirmar-reserva">Executar</button>
+                            <button id="btn-limpar-inshab-confirmar-reserva" onclick="limparConfirmarReserva()">Limpar</button>
+                            <button id="btn-fechar-inshab-confirmar-reserva" onclick="closeConfirmarReserva()">Fechar</button>
+                        </div>
+                    </div>        
+                            
+                    <!-- ----- CONFIRMAR RESERVA MODAL INSREC ----- -->
+                    <div id="modal-insrec-confirmar-reserva">
+                        <div class="inputs-align-insrec-confirmar-reserva-1">
+                            <label for="ident-os-insrec-confirmar-reserva">Ordem:
+                                <input class="input-value" type="text" name="ident-os-insrec-confirmar-reserva" id="ident-os-insrec-confirmar-reserva" oninput="this.value = this.value.replace(/\s+/g, '');">
+                            </label>
+    
+                            <label for="cnl-insrec-confirmar-reserva">CNL:
+                                <input class="input-value" type="text" name="cnl-insrec-confirmar-reserva" id="cnl-insrec-confirmar-reserva" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                            </label>
+                        </div>
+    
+                        <div class="inputs-align-insrec-confirmar-reserva-2"> 
+                            <label for="id-estacao-insrec-confirmar-reserva">Área Telefônica:
+                                <input class="input-value" type="text" name="id-estacao-insrec-confirmar-reserva" id="id-estacao-insrec-confirmar-reserva" maxlength="2" oninput="this.value = this.value.toUpperCase()">
+                            </label>
+
+                            <label for="terminal-insrec-confirmar-reserva">DDD + Terminal:
+                                <input class="input-value" type="text" name="terminal-insrec-confirmar-reserva" id="terminal-insrec-confirmar-reserva" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                            </label>
+    
+                            <label for="flag-port-insrec-confirmar-reserva">Flag. Port.:
+                                <select name="flag-port-insrec-confirmar-reserva" id="flag-port-insrec-confirmar-reserva">
+                                    <option value=""></option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </label>
+                        </div>
+                        
+                        <div class="inputs-align-insrec-confirmar-reserva-3">
+                            <label for="nrc-insrec-confirmar-reserva">NRC:
+                                <input class="input-value" type="text" name="nrc-insrec-confirmar-reserva" id="nrc-insrec-confirmar-reserva" oninput="this.value = this.value.replace(/\s+/g, '');">
+                            </label>
+
+                            <label for="id-fibra-insrec-confirmar-reserva">ID Fibra:
+                                <input class="input-value" type="text" name="id-fibra-insrec-confirmar-reserva" id="id-fibra-insrec-confirmar-reserva" onkeyup="this.value = this.value.replace(/\.|\-/g, '').replace(/\s+/g, '');">
+                            </label>
+                        </div>
+
+                        <div id="resultado-confirmar-reserva-insrec">
+                            <img id="loader-confirmar-reserva-insrec" src="img/loader.gif">
+                            <div id="modal-resultado-confirmar-reserva-insrec"></div>
+                        </div>
+
+                        <div class="buttons-insrec-confirmar-reserva">
+                            <button id="btn-insrec-confirmar-reserva">Executar</button>
+                            <button id="btn-limpar-insrec-confirmar-reserva" onclick="limparConfirmarReserva()">Limpar</button>
+                            <button id="btn-fechar-insrec-confirmar-reserva" onclick="closeConfirmarReserva()">Fechar</button>
+                        </div>
+                    </div>        
+                    <!-- ----- CONFIRMAR RESERVA MODAL INSMUD ----- -->
+                    <div id="modal-insmud-confirmar-reserva">
+                        <div class="inputs-align-insmud-confirmar-reserva-1">
+                            <label for="ident-os-insmud-confirmar-reserva">Ordem:
+                                <input class="input-value" type="text" name="ident-os-insmud-confirmar-reserva" id="ident-os-insmud-confirmar-reserva" oninput="this.value = this.value.replace(/\s+/g, '');">
+                            </label>
+    
+                            <label for="cnl-insmud-confirmar-reserva">CNL:
+                                <input class="input-value" type="text" name="cnl-insmud-confirmar-reserva" id="cnl-insmud-confirmar-reserva" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                            </label>
+                        </div>
+    
+                        <div class="inputs-align-insmud-confirmar-reserva-2"> 
+                            <label for="id-estacao-insmud-confirmar-reserva">Área Telefônica:
+                                <input class="input-value" type="text" name="id-estacao-insmud-confirmar-reserva" id="id-estacao-insmud-confirmar-reserva" maxlength="2" oninput="this.value = this.value.toUpperCase()">
+                            </label>
+
+                            <label for="terminal-insmud-confirmar-reserva">DDD + Terminal:
+                                <input class="input-value" type="text" name="terminal-insmud-confirmar-reserva" id="terminal-insmud-confirmar-reserva" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                            </label>
+    
+                            <label for="flag-port-insmud-confirmar-reserva">Flag. Port.:
+                                <select name="flag-port-insmud-confirmar-reserva" id="flag-port-insmud-confirmar-reserva">
+                                    <option value=""></option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </label>
+                        </div>
+
+                        <div class="inputs-align-insmud-confirmar-reserva-3">
+                            <label for="nrc-insmud-confirmar-reserva">NRC:
+                                <input class="input-value" type="text" name="nrc-insmud-confirmar-reserva" id="nrc-insmud-confirmar-reserva" oninput="this.value = this.value.replace(/\s+/g, '');">
+                            </label>
+
+                            <label for="id-fibra-insmud-confirmar-reserva">ID Fibra:
+                                <input class="input-value" type="text" name="id-fibra-insmud-confirmar-reserva" id="id-fibra-insmud-confirmar-reserva" onkeyup="this.value = this.value.replace(/\.|\-/g, '').replace(/\s+/g, '');">
+                            </label>
+                        </div>
+
+                        <div id="resultado-confirmar-reserva-insmud">
+                            <img id="loader-confirmar-reserva-insmud" src="img/loader.gif">
+                            <div id="modal-resultado-confirmar-reserva-insmud"></div>
+                        </div>
+
+                        <div class="buttons-insmud-confirmar-reserva">
+                            <button id="btn-insmud-confirmar-reserva">Executar</button>
+                            <button id="btn-limpar-insmud-confirmar-reserva" onclick="limparConfirmarReserva()">Limpar</button>
+                            <button id="btn-fechar-insmud-confirmar-reserva" onclick="closeConfirmarReserva()">Fechar</button>
+                        </div>
+                    </div>    
+
+                    <!-- ----- CONFIRMAR RESERVA MODAL ALTPRO ----- -->
+                    <div id="modal-altpro-confirmar-reserva">
+                        <div class="inputs-align-altpro-confirmar-reserva-1">
+                            <label for="ident-os-altpro-confirmar-reserva">Ordem:
+                                <input class="input-value" type="text" name="ident-os-altpro-confirmar-reserva" id="ident-os-altpro-confirmar-reserva" oninput="this.value = this.value.replace(/\s+/g, '');">
+                            </label>
+    
+                            <label for="cnl-altpro-confirmar-reserva">CNL:
+                                <input class="input-value" type="text" name="cnl-altpro-confirmar-reserva" id="cnl-altpro-confirmar-reserva" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                            </label>
+                        </div>
+    
+                        <div class="inputs-align-altpro-confirmar-reserva-2"> 
+                            <label for="id-estacao-altpro-confirmar-reserva">Área Telefônica:
+                                <input class="input-value" type="text" name="id-estacao-altpro-confirmar-reserva" id="id-estacao-altpro-confirmar-reserva" maxlength="2" oninput="this.value = this.value.toUpperCase()">
+                            </label>
+
+                            <label for="terminal-altpro-confirmar-reserva">DDD + Terminal:
+                                <input class="input-value" type="text" name="terminal-altpro-confirmar-reserva" id="terminal-altpro-confirmar-reserva" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                            </label>
+    
+                            <label for="flag-port-altpro-confirmar-reserva">Flag. Port.:
+                                <select name="flag-port-altpro-confirmar-reserva" id="flag-port-altpro-confirmar-reserva">
+                                    <option value=""></option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </label>
+                        </div>
+
+                        <div class="inputs-align-altpro-confirmar-reserva-3">
+                            <label for="nrc-altpro-confirmar-reserva">NRC:
+                                <input class="input-value" type="text" name="nrc-altpro-confirmar-reserva" id="nrc-altpro-confirmar-reserva" oninput="this.value = this.value.replace(/\s+/g, '');">
+                            </label>
+
+                            <label for="id-fibra-altpro-confirmar-reserva">ID Fibra:
+                                <input class="input-value" type="text" name="id-fibra-altpro-confirmar-reserva" id="id-fibra-altpro-confirmar-reserva" onkeyup="this.value = this.value.replace(/\.|\-/g, '').replace(/\s+/g, '');">
+                            </label>
+                        </div>
+
+                        <div id="resultado-confirmar-reserva-altpro">
+                            <img id="loader-confirmar-reserva-altpro" src="img/loader.gif">
+                            <div id="modal-resultado-confirmar-reserva-altpro"></div>
+                        </div>
+
+                        <div class="buttons-altpro-confirmar-reserva">
+                            <button id="btn-altpro-confirmar-reserva">Executar</button>
+                            <button id="btn-limpar-altpro-confirmar-reserva" onclick="limparConfirmarReserva()">Limpar</button>
+                            <button id="btn-fechar-altpro-confirmar-reserva" onclick="closeConfirmarReserva()">Fechar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ----- OCUPAR CONFIRMAÇÃO ----- -->
+            <div id="ocupar-confirmacao">
+                <div class="title-ocupar-confirmacao">
+                    <h1>OCUPAR CONFIRMAÇÃO</h1>
+                </div>
+
+                <div class="inputs-ocupar-confirmacao">
+                    <div class="ocupar-confirmacao-select-modal">
+                        <label for="natureza-os-ocupar-confirmacao">Selecione uma opção:</label>
+                        <select name="natureza-os-ocupar-confirmacao" id="natureza-os-ocupar-confirmacao" onclick="ocuparConfirmacao(this.value)">
+                            <option value="inshab">INSHAB</option>
+                            <option value="insrec">INSREC</option>
+                            <option value="insmud">INSMUD</option>
+                            <option value="altpro">ALTPRO</option>
+                        </select>
+                    </div>
+                    <!-- ----- OCUPAR CONFIRMAÇÃO MODAL INSHAB ----- -->
+                    <div id="modal-opacity-ocupar-confirmacao"></div>
+                    <div id="modal-inshab-ocupar-confirmacao">
+                        <div class="inputs-align-inshab-ocupar-confirmacao-1">
+                            <label for="ident-os-inshab-ocupar-confirmacao">Ordem:
+                                <input class="input-value" type="text" name="ident-os-inshab-ocupar-confirmacao" id="ident-os-inshab-ocupar-confirmacao" oninput="this.value = this.value.replace(/\s+/g, '');">
+                            </label>
+    
+                            <label for="cnl-inshab-ocupar-confirmacao">CNL:
+                                <input class="input-value" type="text" name="cnl-inshab-ocupar-confirmacao" id="cnl-inshab-ocupar-confirmacao" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                            </label>
+                        </div>
+    
+                        <div class="inputs-align-inshab-ocupar-confirmacao-2">
+                            <label for="terminal-inshab-ocupar-confirmacao">DDD + Terminal:
+                                <input class="input-value" type="text" name="terminal-inshab-ocupar-confirmacao" id="terminal-inshab-ocupar-confirmacao" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                            </label>
+    
+                            <label for="flag-port-inshab-ocupar-confirmacao">Flag. Port.:
+                                <select name="flag-port-inshab-ocupar-confirmacao" id="flag-port-inshab-ocupar-confirmacao">
+                                    <option value=""></option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </label>
+                        </div>
+
+                        <div id="resultado-ocupar-confirmacao-inshab">
+                            <img id="loader-ocupar-confirmacao-inshab" src="img/loader.gif">
+                            <div id="modal-resultado-ocupar-confirmacao-inshab"></div>
+                        </div>
+
+                        <div class="buttons-inshab-ocupar-confirmacao">
+                            <button id="btn-inshab-ocupar-confirmacao">Executar</button>
+                            <button id="btn-limpar-inshab-ocupar-confirmacao" onclick="limparOcuparConfirmacao()">Limpar</button>
+                            <button id="btn-fechar-inshab-ocupar-confirmacao" onclick="closeOcuparConfirmacao()">Fechar</button>
+                        </div>
+                    </div>        
+
+                    <!-- ----- OCUPAR CONFIRMAÇÃO MODAL INSREC ----- -->
+                    <div id="modal-insrec-ocupar-confirmacao">
+                        <div class="inputs-align-insrec-ocupar-confirmacao-1">
+                            <label for="ident-os-insrec-ocupar-confirmacao">Ordem:
+                                <input class="input-value" type="text" name="ident-os-insrec-ocupar-confirmacao" id="ident-os-insrec-ocupar-confirmacao" oninput="this.value = this.value.replace(/\s+/g, '');">
+                            </label>
+    
+                            <label for="cnl-insrec-ocupar-confirmacao">CNL:
+                                <input class="input-value" type="text" name="cnl-insrec-ocupar-confirmacao" id="cnl-insrec-ocupar-confirmacao" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                            </label>
+                        </div>
+    
+                        <div class="inputs-align-insrec-ocupar-confirmacao-2">
+                            <label for="terminal-insrec-ocupar-confirmacao">DDD + Terminal:
+                                <input class="input-value" type="text" name="terminal-insrec-ocupar-confirmacao" id="terminal-insrec-ocupar-confirmacao" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                            </label>
+    
+                            <label for="flag-port-insrec-ocupar-confirmacao">Flag. Port.:
+                                <select name="flag-port-insrec-ocupar-confirmacao" id="flag-port-insrec-ocupar-confirmacao">
+                                    <option value=""></option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </label>
+                        </div>
+
+                        <div id="resultado-ocupar-confirmacao-insrec">
+                            <img id="loader-ocupar-confirmacao-insrec" src="img/loader.gif">
+                            <div id="modal-resultado-ocupar-confirmacao-insrec"></div>
+                        </div>
+
+                        <div class="buttons-insrec-ocupar-confirmacao">
+                            <button id="btn-insrec-ocupar-confirmacao">Executar</button>
+                            <button id="btn-limpar-insrec-ocupar-confirmacao" onclick="limparOcuparConfirmacao()">Limpar</button>
+                            <button id="btn-fechar-insrec-ocupar-confirmacao" onclick="closeOcuparConfirmacao()">Fechar</button>
+                        </div>
+                    </div>        
+                    <!-- ----- OCUPAR CONFIRMAÇÃO MODAL INSMUD ----- -->
+                    <div id="modal-insmud-ocupar-confirmacao">
+                        <div class="inputs-align-insmud-ocupar-confirmacao-1">
+                            <label for="ident-os-insmud-ocupar-confirmacao">Ordem:
+                                <input class="input-value" type="text" name="ident-os-insmud-ocupar-confirmacao" id="ident-os-insmud-ocupar-confirmacao" oninput="this.value = this.value.replace(/\s+/g, '');">
+                            </label>
+    
+                            <label for="cnl-insmud-ocupar-confirmacao">CNL:
+                                <input class="input-value" type="text" name="cnl-insmud-ocupar-confirmacao" id="cnl-insmud-ocupar-confirmacao" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                            </label>
+                        </div>
+    
+                        <div class="inputs-align-insmud-ocupar-confirmacao-2">
+                            <label for="terminal-insmud-ocupar-confirmacao">DDD + Terminal:
+                                <input class="input-value" type="text" name="terminal-insmud-ocupar-confirmacao" id="terminal-insmud-ocupar-confirmacao" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                            </label>
+    
+                            <label for="flag-port-insmud-ocupar-confirmacao">Flag. Port.:
+                                <select name="flag-port-insmud-ocupar-confirmacao" id="flag-port-insmud-ocupar-confirmacao">
+                                    <option value=""></option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </label>
+                        </div>
+
+                        <div id="resultado-ocupar-confirmacao-insmud">
+                            <img id="loader-ocupar-confirmacao-insmud" src="img/loader.gif">
+                            <div id="modal-resultado-ocupar-confirmacao-insmud"></div>
+                        </div>
+
+                        <div class="buttons-insmud-ocupar-confirmacao">
+                            <button id="btn-insmud-ocupar-confirmacao">Executar</button>
+                            <button id="btn-limpar-insmud-ocupar-confirmacao" onclick="limparOcuparConfirmacao()">Limpar</button>
+                            <button id="btn-fechar-insmud-ocupar-confirmacao" onclick="closeOcuparConfirmacao()">Fechar</button>
+                        </div>
+                    </div>    
+                    <!-- ----- OCUPAR CONFIRMAÇÃO MODAL ALTPRO ----- -->
+                    <div id="modal-altpro-ocupar-confirmacao">
+                        <div class="inputs-align-altpro-ocupar-confirmacao-1">
+                            <label for="ident-os-altpro-ocupar-confirmacao">Ordem:
+                                <input class="input-value" type="text" name="ident-os-altpro-ocupar-confirmacao" id="ident-os-altpro-ocupar-confirmacao" oninput="this.value = this.value.replace(/\s+/g, '');">
+                            </label>
+    
+                            <label for="cnl-altpro-ocupar-confirmacao">CNL:
+                                <input class="input-value" type="text" name="cnl-altpro-ocupar-confirmacao" id="cnl-altpro-ocupar-confirmacao" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                            </label>
+                        </div>
+    
+                        <div class="inputs-align-altpro-ocupar-confirmacao-2">
+                            <label for="terminal-altpro-ocupar-confirmacao">DDD + Terminal:
+                                <input class="input-value" type="text" name="terminal-altpro-ocupar-confirmacao" id="terminal-altpro-ocupar-confirmacao" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                            </label>
+    
+                            <label for="flag-port-altpro-ocupar-confirmacao">Flag. Port.:
+                                <select name="flag-port-altpro-ocupar-confirmacao" id="flag-port-altpro-ocupar-confirmacao">
+                                    <option value=""></option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </label>
+                        </div>
+
+                        <div id="resultado-ocupar-confirmacao-altpro">
+                            <img id="loader-ocupar-confirmacao-altpro" src="img/loader.gif">
+                            <div id="modal-resultado-ocupar-confirmacao-altpro"></div>
+                        </div>
+
+                        <div class="buttons-altpro-ocupar-confirmacao">
+                            <button id="btn-altpro-ocupar-confirmacao">Executar</button>
+                            <button id="btn-limpar-altpro-ocupar-confirmacao" onclick="limparOcuparConfirmacao()">Limpar</button>
+                            <button id="btn-fechar-altpro-ocupar-confirmacao" onclick="closeOcuparConfirmacao()">Fechar</button>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+
+            <!-- ----- CANCELAR CONFIRMAÇÃO ----- -->
+            <div id="cancelar-confirmacao">
+                <div class="title-cancelar-confirmacao">
+                    <h1>CANCELAR CONFIRMAÇÃO</h1>
+                </div>
+
+                <div class="inputs-cancelar-confirmacao">
+                    <div class="cancelar-confirmacao-select-modal">
+                        <label for="natureza-os-cancelar-confirmacao">Selecione uma opção:</label>
+                        <select name="natureza-os-cancelar-confirmacao" id="natureza-os-cancelar-confirmacao" onclick="cancelarConfirmacao(this.value)">
+                            <option value="inshab">INSHAB</option>
+                            <option value="insrec">INSREC</option>
+                            <option value="insmud">INSMUD</option>
+                            <option value="subnum">SUBNUM</option>
+                        </select>
+                    </div>
+                    <!-- ----- CANCELAR CONFIRMAÇÃO MODAL INSHAB ----- -->
+                    <div id="modal-opacity-cancelar-confirmacao"></div>
+                    <div id="modal-inshab-cancelar-confirmacao">
+                        <div class="inputs-align-inshab-cancelar-confirmacao-1">
+                            <label for="ident-os-inshab-cancelar-confirmacao">Ordem:
+                                <input class="input-value" type="text" name="ident-os-inshab-cancelar-confirmacao" id="ident-os-inshab-cancelar-confirmacao" oninput="this.value = this.value.replace(/\s+/g, '');">
+                            </label>
+                        </div>
+
+                        <div class="inputs-align-inshab-cancelar-confirmacao-2">
+                            <label for="cnl-inshab-cancelar-confirmacao">CNL:
+                                <input class="input-value" type="text" name="cnl-inshab-cancelar-confirmacao" id="cnl-inshab-cancelar-confirmacao" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                            </label>
+                        </div>
+    
+                        <div class="inputs-align-inshab-cancelar-confirmacao-3">
+                            <label for="terminal-inshab-cancelar-confirmacao">DDD + Terminal:
+                                <input class="input-value" type="text" name="terminal-inshab-cancelar-confirmacao" id="terminal-inshab-cancelar-confirmacao" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                            </label>
+                        </div>
+
+                        <div id="resultado-cancelar-confirmacao-inshab">
+                            <img id="loader-cancelar-confirmacao-inshab" src="img/loader.gif">
+                            <div id="modal-resultado-cancelar-confirmacao-inshab"></div>
+                        </div>
+
+                        <div class="buttons-inshab-cancelar-confirmacao">
+                            <button id="btn-inshab-cancelar-confirmacao">Executar</button>
+                            <button id="btn-limpar-inshab-cancelar-confirmacao" onclick="limparCancelarConfirmacao()">Limpar</button>
+                            <button id="btn-fechar-inshab-cancelar-confirmacao" onclick="closeCancelarConfirmacao()">Fechar</button>
+                        </div>
+                    </div>        
+
+                    <!-- ----- CANCELAR CONFIRMAÇÃO MODAL INSREC ----- -->
+                    <div id="modal-opacity-cancelar-confirmacao"></div>
+                    <div id="modal-insrec-cancelar-confirmacao">
+                        <div class="inputs-align-insrec-cancelar-confirmacao-1">
+                            <label for="ident-os-insrec-cancelar-confirmacao">Ordem:
+                                <input class="input-value" type="text" name="ident-os-insrec-cancelar-confirmacao" id="ident-os-insrec-cancelar-confirmacao" oninput="this.value = this.value.replace(/\s+/g, '');">
+                            </label>
+                        </div>
+
+                        <div class="inputs-align-insrec-cancelar-confirmacao-2">
+                            <label for="cnl-insrec-cancelar-confirmacao">CNL:
+                                <input class="input-value" type="text" name="cnl-insrec-cancelar-confirmacao" id="cnl-insrec-cancelar-confirmacao" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                            </label>
+                        </div>
+    
+                        <div class="inputs-align-insrec-cancelar-confirmacao-3">
+                            <label for="terminal-insrec-cancelar-confirmacao">DDD + Terminal:
+                                <input class="input-value" type="text" name="terminal-insrec-cancelar-confirmacao" id="terminal-insrec-cancelar-confirmacao" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                            </label>
+                        </div>
+
+                        <div id="resultado-cancelar-confirmacao-insrec">
+                            <img id="loader-cancelar-confirmacao-insrec" src="img/loader.gif">
+                            <div id="modal-resultado-cancelar-confirmacao-insrec"></div>
+                        </div>
+
+                        <div class="buttons-insrec-cancelar-confirmacao">
+                            <button id="btn-insrec-cancelar-confirmacao">Executar</button>
+                            <button id="btn-limpar-insrec-cancelar-confirmacao" onclick="limparCancelarConfirmacao()">Limpar</button>
+                            <button id="btn-fechar-insrec-cancelar-confirmacao" onclick="closeCancelarConfirmacao()">Fechar</button>
+                        </div>
+                    </div>  
+
+                    <!-- ----- CANCELAR CONFIRMAÇÃO MODAL INSMUD ----- -->
+                    <div id="modal-insmud-cancelar-confirmacao">
+                        <div class="inputs-align-insmud-cancelar-confirmacao-1">
+                            <label for="ident-os-insmud-cancelar-confirmacao">Ordem:
+                                <input class="input-value" type="text" name="ident-os-insmud-cancelar-confirmacao" id="ident-os-insmud-cancelar-confirmacao" oninput="this.value = this.value.replace(/\s+/g, '');">
+                            </label>
+                        </div>
+    
+                        <div class="inputs-align-insmud-cancelar-confirmacao-2">
+                            <label for="cnl-insmud-cancelar-confirmacao">CNL:
+                                <input class="input-value" type="text" name="cnl-insmud-cancelar-confirmacao" id="cnl-insmud-cancelar-confirmacao" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                            </label>
+                        </div>
+
+                        <div class="inputs-align-insmud-cancelar-confirmacao-2">
+                            <label for="terminal-insmud-cancelar-confirmacao">DDD + Terminal:
+                                <input class="input-value" type="text" name="terminal-insmud-cancelar-confirmacao" id="terminal-insmud-cancelar-confirmacao">
+                            </label>
+                        </div>
+
+                        <div id="resultado-cancelar-confirmacao-insmud">
+                            <img id="loader-cancelar-confirmacao-insmud" src="img/loader.gif">
+                            <div id="modal-resultado-cancelar-confirmacao-insmud"></div>
+                        </div>
+
+                        <div class="buttons-insmud-cancelar-confirmacao">
+                            <button id="btn-insmud-cancelar-confirmacao">Executar</button>
+                            <button id="btn-limpar-insmud-cancelar-confirmacao" onclick="limparCancelarConfirmacao()">Limpar</button>
+                            <button id="btn-fechar-insmud-cancelar-confirmacao" onclick="closeCancelarConfirmacao()">Fechar</button>
+                        </div>
+                    </div>    
+
+                     <!-- ----- CANCELAR CONFIRMAÇÃO MODAL SUBNUM ----- -->
+                     <div id="modal-subnum-cancelar-confirmacao">
+                        <div class="inputs-align-subnum-cancelar-confirmacao-1">
+                            <label for="ident-os-subnum-cancelar-confirmacao">Ordem:
+                                <input class="input-value" type="text" name="ident-os-subnum-cancelar-confirmacao" id="ident-os-subnum-cancelar-confirmacao" oninput="this.value = this.value.replace(/\s+/g, '');">
+                            </label>
+                        </div>
+    
+                        <div class="inputs-align-subnum-cancelar-confirmacao-2">                              
+                            <label for="cnl-subnum-cancelar-confirmacao">CNL:
+                                <input class="input-value" type="text" name="cnl-subnum-cancelar-confirmacao" id="cnl-subnum-cancelar-confirmacao" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                            </label>
+                        </div>
+
+                        <div class="inputs-align-subnum-cancelar-confirmacao-3">
+                            <label for="terminal-subnum-cancelar-confirmacao">DDD + Terminal:
+                                <input class="input-value" type="text" name="terminal-subnum-cancelar-confirmacao" id="terminal-subnum-cancelar-confirmacao" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                            </label>
+                        </div>
+
+                        <div id="resultado-cancelar-confirmacao-subnum">
+                            <img id="loader-cancelar-confirmacao-subnum" src="img/loader.gif">
+                            <div id="modal-resultado-cancelar-confirmacao-subnum"></div>
+                        </div>
+
+                        <div class="buttons-subnum-cancelar-confirmacao">
+                            <button id="btn-subnum-cancelar-confirmacao">Executar</button>
+                            <button id="btn-limpar-subnum-cancelar-confirmacao" onclick="limparCancelarConfirmacao()">Limpar</button>
+                            <button id="btn-fechar-subnum-cancelar-confirmacao" onclick="closeCancelarConfirmacao()">Fechar</button>
+                        </div>
+                    </div>        
+                </div>
+            </div>
+
+            <!-- ----- CANCELAR RESERVA ----- -->
+            <div id="cancelar-reserva">
+                <div class="title-cancelar-reserva">
+                    <h1>CANCELAR RESERVA</h1>
+                </div>
+
+                <div class="inputs-cancelar-reserva">
+                    <div id="modal-opacity-cancelar-reserva"></div>
+                    <div class="inputs-align-cancelar-reserva-1">
+                        <label for="terminal-cancelar-reserva">DDD + Terminal:
+                            <input class="input-value" type="text" name="terminal-cancelar-reserva" id="terminal-cancelar-reserva" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                        </label>
+                    </div>
+
+                    <div class="inputs-align-cancelar-reserva-2">
+                        <label for="nrc-cancelar-reserva">NRC:
+                            <input class="input-value" type="text" name="nrc-cancelar-reserva" id="nrc-cancelar-reserva" oninput="this.value = this.value.replace(/\s+/g, '');">
+                        </label>
+                    </div>
+                </div>
+
+                <div id="resultado-cancelar-reserva">
+                    <img id="loader-cancelar-reserva" src="img/loader.gif">
+                    <div id="modal-resultado-cancelar-reserva"></div>
+                </div>
+
+                <div class="buttons-cancelar-reserva">
+                    <button id="btn-cancelar-reserva">Executar</button>
+                    <button id="btn-limpar-cancelar-reserva" onclick="limparCancelarReserva()">Limpar</button>
+                    <button id="btn-fechar-cancelar-reserva" onclick="closeCancelarReserva()">Fechar</button>
+                </div>
+            </div>
+
+            <!-- ----- SOLICITAR LIBERAÇÃO ----- -->
+            <div id="solicitar-liberacao">
+                <div class="title-solicitar-liberacao">
+                    <h1>SOLICITAR LIBERAÇÃO</h1>
+                </div>
+
+                <div class="inputs-solicitar-liberacao">
+                    <div id="modal-opacity-solicitar-liberacao"></div>
+                    <div class="inputs-align-solicitar-liberacao-1">
+                        <label for="ident-os-solicitar-liberacao">Ident. OS.:
+                            <input class="input-value" type="text" name="ident-os-solicitar-liberacao" id="ident-os-solicitar-liberacao" oninput="this.value = this.value.replace(/\s+/g, '');">
+                        </label>
+    
+                        <label for="cnl-solicitar-liberacao">CNL:
+                            <input class="input-value" type="text" name="cnl-solicitar-liberacao" id="cnl-solicitar-liberacao" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                        </label>
+                    </div>
+
+                    <div class="inputs-align-solicitar-liberacao-2">
+                        <label for="terminal-solicitar-liberacao">DDD + Terminal:
+                            <input class="input-value" type="text" name="terminal-solicitar-liberacao" id="terminal-solicitar-liberacao" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                        </label>
+
+                        <label for="flag-port-solicitar-liberacao">Flag. Port.:
+                            <select name="flag-port-solicitar-liberacao" id="flag-port-solicitar-liberacao">
+                                <option value=""></option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="resultado-solicitar-liberacao">
+                    <img id="loader-solicitar-liberacao" src="img/loader.gif">
+                    <div id="modal-resultado-solicitar-liberacao"></div>
+                </div>
+
+                <div class="buttons-solicitar-liberacao">
+                    <button id="btn-solicitar-liberacao">Executar</button>
+                    <button id="btn-limpar-solicitar-liberacao" onclick="limparSolicitarLiberacao()">Limpar</button>
+                    <button id="btn-fechar-solicitar-liberacao" onclick="closeSolicitarLiberacao()">Fechar</button>
+                </div>
+            </div>
+
+            <!-- ----- CONFIRMAR LIBERAÇÃO ----- -->
+            <div id="confirmar-liberacao">
+                <div class="title-confirmar-liberacao">
+                    <h1>CONFIRMAR LIBERAÇÃO</h1>
+                </div>
+
+                <div class="inputs-confirmar-liberacao">
+                    <div id="modal-opacity-confirmar-liberacao"></div>
+                    <div class="inputs-align-confirmar-liberacao-1">
+                        <label for="ident-os-confirmar-liberacao">Ident. OS.:
+                            <input class="input-value" type="text" name="ident-os-confirmar-liberacao" id="ident-os-confirmar-liberacao" oninput="this.value = this.value.replace(/\s+/g, '');">
+                        </label>
+    
+                        <label for="cnl-confirmar-liberacao">CNL:
+                            <input class="input-value" type="text" name="cnl-confirmar-liberacao" id="cnl-confirmar-liberacao" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                        </label>
+                    </div>
+
+                    <div class="inputs-align-confirmar-liberacao-2">
+                        <label for="terminal-confirmar-liberacao">DDD + Terminal:
+                            <input class="input-value" type="text" name="terminal-confirmar-liberacao" id="terminal-confirmar-liberacao" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                        </label>
+
+                        <label for="flag-port-confirmar-liberacao">Flag. Port.:
+                            <select name="flag-port-confirmar-liberacao" id="flag-port-confirmar-liberacao">
+                                <option value=""></option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="resultado-confirmar-liberacao">
+                    <img id="loader-confirmar-liberacao" src="img/loader.gif">
+                    <div id="modal-resultado-confirmar-liberacao"></div>
+                </div>
+
+                <div class="buttons-confirmar-liberacao">
+                    <button id="btn-confirmar-liberacao">Executar</button>
+                    <button id="btn-limpar-confirmar-liberacao" onclick="limparConfirmarLiberacao()">Limpar</button>
+                    <button id="btn-fechar-confirmar-liberacao" onclick="closeConfirmarLiberacao()">Fechar</button>
+                </div>
+            </div>
+
+            <!-- ----- CANCELAR LIBERAÇÃO ----- -->
+            <div id="cancelar-liberacao">
+                <div class="title-cancelar-liberacao">
+                    <h1>CANCELAR LIBERAÇÃO</h1>
+                </div>
+
+                <div class="inputs-cancelar-liberacao">
+                    <div id="modal-opacity-cancelar-liberacao"></div>
+                    <div class="inputs-align-cancelar-liberacao-1">
+                        <label for="ident-os-cancelar-liberacao">Ident. OS.:
+                            <input class="input-value" type="text" name="ident-os-cancelar-liberacao" id="ident-os-cancelar-liberacao" oninput="this.value = this.value.replace(/\s+/g, '');">
+                        </label>
+    
+                        <label for="cnl-cancelar-liberacao">CNL:
+                            <input class="input-value" type="text" name="cnl-cancelar-liberacao" id="cnl-cancelar-liberacao" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                        </label>
+
+                        <label for="terminal-cancelar-liberacao">DDD + Terminal:
+                            <input class="input-value" type="text" name="terminal-cancelar-liberacao" id="terminal-cancelar-liberacao" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                        </label>
+                    </div>
+                </div>
+
+                <div id="resultado-cancelar-liberacao">
+                    <img id="loader-cancelar-liberacao" src="img/loader.gif">
+                    <div id="modal-resultado-cancelar-liberacao"></div>
+                </div>
+
+                <div class="buttons-cancelar-liberacao">
+                    <button id="btn-cancelar-liberacao">Executar</button>
+                    <button id="btn-limpar-cancelar-liberacao" onclick="limparCancelarLiberacao()">Limpar</button>
+                    <button id="btn-fechar-cancelar-liberacao" onclick="closeCancelarLiberacao()">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
