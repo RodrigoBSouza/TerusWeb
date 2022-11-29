@@ -3,7 +3,7 @@
 
 session_start();
 
-$url = "http://10.27.16.140:7018/ws-linhaIndividual/NumeracaoLIService?wsdl";
+$url = "URL-DA-API";
 $cnl = isset($_POST['cnl']) ? $_POST['cnl'] : null;
 $areaTel = isset($_POST['areaTel']) ? $_POST['areaTel'] : null;
 $estacao = array(
