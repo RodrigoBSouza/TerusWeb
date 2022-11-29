@@ -3,7 +3,7 @@
 session_start();
 date_default_timezone_set ("America/Sao_Paulo");
 
-$url = "http://10.27.16.140:7018/ws-linhaIndividual/NumeracaoLIService?wsdl";
+$url = "URL-DA-API";
 $terminal = isset($_POST['terminal']) ? $_POST['terminal'] : null;
 $terminalFormatado = substr($terminal, 2);
 
